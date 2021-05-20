@@ -1,6 +1,8 @@
-# ReScript Project Template
+# Bridge game using Rescript, @rescript/react and Twilio js api
 
-The only official ReScript starter template.
+Starting point rescript-lang/rescript-project-template plus @rescript/react.
+All modules use commonjs format. Original rescript install was 9.1.2.
+React 17.0.2. @rescript/react 0.10.3
 
 ## Installation
 

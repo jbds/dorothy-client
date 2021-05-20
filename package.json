@@ -1,5 +1,5 @@
 {
-  "name": "rescript-project-template",
+  "name": "dorothy-client",
   "version": "0.0.1",
   "scripts": {
     "build": "rescript",
@@ -12,6 +12,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@rescript/react": "^0.10.3",
+    "react": "^17.0.2",
     "rescript": "*"
   }
 }
