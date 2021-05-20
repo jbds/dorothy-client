@@ -15,5 +15,8 @@
     "@rescript/react": "^0.10.3",
     "react": "^17.0.2",
     "rescript": "*"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0"
   }
 }
