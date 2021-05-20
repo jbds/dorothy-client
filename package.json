@@ -4,7 +4,8 @@
   "scripts": {
     "build": "rescript",
     "clean": "rescript clean -with-deps",
-    "start": "rescript build -w"
+    "start": "rescript build -w",
+    "deploy": "browserify ./src/Index.bs.js -o ./deploy/bundle.js"
   },
   "keywords": [
     "rescript"
