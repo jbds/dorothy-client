@@ -30,11 +30,5 @@ let getStyle = (isLandscape, vhTrue) => {
 @react.component
 let make = (~isLandscape, ~vhTrue) => {
   let style = getStyle(isLandscape, vhTrue)
-  <div style>
-    <div> {React.string("Hello Bidding History")} </div>
-    <div id="participants">
-      <div id="local-participant" className="participant"> <video /> </div>
-    </div>
-    <div> {React.string("Video test in here")} </div>
-  </div>
+  <div style> {React.string("Hello Bidding History")} </div>
 }

@@ -2,6 +2,7 @@
 'use strict';
 
 var React = require("react");
+var RegionVideo = require("./RegionsStyling/RegionVideo.bs.js");
 var RegionCardTable = require("./RegionsStyling/RegionCardTable.bs.js");
 var RegionScoreSheet = require("./RegionsStyling/RegionScoreSheet.bs.js");
 var RegionTableSeating = require("./RegionsStyling/RegionTableSeating.bs.js");
@@ -32,6 +33,9 @@ function App(Props) {
                   isLandscape: isLandscape,
                   vhTrue: vhTrue
                 }), React.createElement(RegionCardTableBRHS.make, {
+                  isLandscape: isLandscape,
+                  vhTrue: vhTrue
+                }), React.createElement(RegionVideo.make, {
                   isLandscape: isLandscape,
                   vhTrue: vhTrue
                 }));

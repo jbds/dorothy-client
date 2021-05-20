@@ -3,30 +3,30 @@
 
 var Ute = require("../Modules/Ute.bs.js");
 var React = require("react");
-var ContentScoreSheet = require("../RegionsContent/ContentScoreSheet.bs.js");
+var ContentVideo = require("../RegionsContent/ContentVideo.bs.js");
 
-function RegionScoreSheet(Props) {
+function RegionVideo(Props) {
   var isLandscape = Props.isLandscape;
   var vhTrue = Props.vhTrue;
   var style = {
-    background: "#e0e0e0",
-    bottom: isLandscape ? "0" : "100vw",
+    background: "#e0e0f0",
+    bottom: isLandscape ? "50%" : "100vw",
     color: "gray",
     left: isLandscape ? Ute.getPercentVhTrueAsString(100.0, vhTrue) : "0",
     overflowY: "auto",
     position: "fixed",
     right: isLandscape ? "0" : "46%",
     textAlign: "center",
-    top: isLandscape ? "50%" : "0"
+    top: isLandscape ? "40%" : "0"
   };
   return React.createElement("div", {
               style: style
-            }, React.createElement(ContentScoreSheet.make, {
+            }, React.createElement(ContentVideo.make, {
                   isLandscape: isLandscape
                 }));
 }
 
-var make = RegionScoreSheet;
+var make = RegionVideo;
 
 exports.make = make;
 /* react Not a pure module */

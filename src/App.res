@@ -22,5 +22,6 @@ let make = (~isLandscape: bool, ~vhTrue: float) => {
     <RegionCardTable isLandscape vhTrue />
     <RegionCardTableTLHS isLandscape vhTrue />
     <RegionCardTableBRHS isLandscape vhTrue />
+    <RegionVideo isLandscape vhTrue />
   </>
 }

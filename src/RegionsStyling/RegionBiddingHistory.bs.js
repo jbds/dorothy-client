@@ -38,12 +38,7 @@ function RegionBiddingHistory(Props) {
   var style = getStyle(isLandscape, vhTrue);
   return React.createElement("div", {
               style: style
-            }, React.createElement("div", undefined, "Hello Bidding History"), React.createElement("div", {
-                  id: "participants"
-                }, React.createElement("div", {
-                      className: "participant",
-                      id: "local-participant"
-                    }, React.createElement("video", undefined))), React.createElement("div", undefined, "Video test in here"));
+            }, "Hello Bidding History");
 }
 
 var make = RegionBiddingHistory;
