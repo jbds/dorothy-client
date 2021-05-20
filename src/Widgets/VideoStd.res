@@ -1,7 +1,7 @@
 @react.component
 let make = () => {
   let style = ReactDOM.Style.make(
-    ~borderRadius="100%",
+    ~borderRadius="20%",
     ~height="10vh",
     ~width="10vh",
     ~objectFit="cover",

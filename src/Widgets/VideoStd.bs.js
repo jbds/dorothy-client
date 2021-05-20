@@ -8,7 +8,7 @@ function VideoStd(Props) {
     height: "10vh",
     overflow: "hidden",
     width: "10vh",
-    borderRadius: "100%",
+    borderRadius: "20%",
     objectFit: "cover"
   };
   return React.createElement("video", {
