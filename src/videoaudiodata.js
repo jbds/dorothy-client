@@ -11,7 +11,7 @@ const canvas = document.getElementById('canvas');
 const form = document.getElementById('form');
 //const identityInput = document.getElementById('identity');
 //const nameInput = document.getElementById('name');
-const participants = document.getElementById('participants');
+//const participants = document.getElementById('participants');
 // move this assignment so it happens after dom is set up JB 20/05/21
 //const video = document.querySelector('#local-participant > video');
 //console.log('check connect id exists:');
@@ -155,7 +155,6 @@ function didDisconnect(error) {
   }
   document.getElementById('identity').disabled = false;
   document.getElementById('name').disabled = false;
-  //connectButton.disabled = false;
   document.getElementById('connect').disabled = false;
   document.getElementById('disconnect').disabled = true;
 }
@@ -243,7 +242,7 @@ function participantConnected(participant) {
 
   const videoElement = document.createElement('video');
   participantDiv.appendChild(videoElement);
-  participants.appendChild(participantDiv);
+  document.getElementById('participants').appendChild(participantDiv);
 
   participant.tracks.forEach(publication => trackPublished(participant, publication));
   participant.on('trackPublished', publication => trackPublished(participant, publication));
