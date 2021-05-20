@@ -14,5 +14,13 @@ let make = (~isLandscape: bool, ~vhTrue: float) => {
   //   <RegionCardTableTLHS isLandscape vhTrue />
   //   <RegionCardTableBRHS isLandscape vhTrue />
   // </>
-  <> <div> {React.string("Hello Dorothy")} </div> </>
+  <>
+    <RegionTableSeating isLandscape vhTrue />
+    <RegionScoreSheet isLandscape vhTrue />
+    <RegionBiddingHistory isLandscape vhTrue />
+    <RegionBiddingKeyboard isLandscape vhTrue />
+    <RegionCardTable isLandscape vhTrue />
+    <RegionCardTableTLHS isLandscape vhTrue />
+    <RegionCardTableBRHS isLandscape vhTrue />
+  </>
 }

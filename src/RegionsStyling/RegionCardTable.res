@@ -12,7 +12,7 @@ let getStyle = (isLandscape, vhTrue) => {
         ~width=Ute.getPercentVhTrueAsString(100.0, vhTrue),
         ~height=Ute.getPercentVhTrueAsString(100.0, vhTrue),
         ~backgroundColor="#003500",
-        ~backgroundImage="url(../assets/green_baize.jpg)",
+        ~backgroundImage="url(./assets/green_baize.jpg)",
         ~backgroundSize="cover",
         (),
       )

@@ -8,7 +8,7 @@ function getStyle(isLandscape, vhTrue) {
   if (isLandscape) {
     return {
             backgroundColor: "#003500",
-            backgroundImage: "url(../assets/green_baize.jpg)",
+            backgroundImage: "url(./assets/green_baize.jpg)",
             height: Ute.getPercentVhTrueAsString(100.0, vhTrue),
             left: "0",
             position: "fixed",
