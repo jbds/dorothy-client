@@ -9,7 +9,7 @@
 @val external w: 'a = "window"
 @val external setTimeout: (unit => unit, int) => float = "setTimeout"
 
-doc["title"] = "Dorothy v0.02"
+doc["title"] = "Dorothy v0.03"
 
 // render can be device orientation specific by injecting isLandscape to use in the app
 // fix iOS Safari and Chrome feature/bug which reports vh incorrectly
