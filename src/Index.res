@@ -4,7 +4,7 @@
 // and inject gIsLandcape to let render be screen-aspect-ratio specific
 // c) After delay to allow DOM to be created, call Twilio api using main()
 
-//@module("./videoaudiodata.js") external main: unit => Js.Promise.t<'a> = "main"
+@module("./videoaudiodata.js") external main: unit => Js.Promise.t<'a> = "main"
 @val external doc: 'a = "document"
 @val external w: 'a = "window"
 @val external setTimeout: (unit => unit, int) => float = "setTimeout"
@@ -40,9 +40,9 @@ w["addEventListener"]("load", _event => {
   renderAllOnLoadOrResize()
 })
 
-// let delayedaction = () => {
-//   Js.log("after delay 2000ms")
-//   let _dummy = main()
-// }
+let delayedaction = () => {
+  Js.log("after delay 2000ms")
+  let _dummy = main()
+}
 
-// let dummyId = setTimeout(delayedaction, 2000)
+let dummyId = setTimeout(delayedaction, 2000)

@@ -6,6 +6,11 @@ var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var Caml_obj = require("rescript/lib/js/caml_obj.js");
 var ReactDom = require("react-dom");
+var VideoaudiodataJs = require("./videoaudiodata.js");
+
+function main(prim) {
+  return VideoaudiodataJs.main();
+}
 
 document.title = "Dorothy v0.03";
 
@@ -39,6 +44,17 @@ Curry._2(window.addEventListener, "load", (function (_event) {
         return renderAllOnLoadOrResize(undefined);
       }));
 
+function delayedaction(param) {
+  console.log("after delay 2000ms");
+  VideoaudiodataJs.main();
+  
+}
+
+var dummyId = setTimeout(delayedaction, 2000);
+
+exports.main = main;
 exports.reRenderApp = reRenderApp;
 exports.renderAllOnLoadOrResize = renderAllOnLoadOrResize;
+exports.delayedaction = delayedaction;
+exports.dummyId = dummyId;
 /*  Not a pure module */
