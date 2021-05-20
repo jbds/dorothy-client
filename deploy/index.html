@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- avoid zooming -->
+  <meta name="viewport" content="width=device-width, user-scalable=0">
+  <title>Dorothy</title>
+  <link rel="shortcut icon" href="assets/favicon.ico">
+  <!-- html - stop two finger zoom on safari on ios -->
+  <!-- stackoverflow.com/questions/58525704/disable-pinch-zoom-on-ios-13-safari -->
+  <!-- body needs style defining because above root component -->
+  <style>
+    html {
+      -webkit-text-size-adjust: none;
+      touch-action: pan-y;
+      /*prevent user scaling*/
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #606060;
+      font-family: 'Trebuchet MS', 'Arial';
+      font-size: 8px;
+      /* avoid Safari highlight of text on press and hold */
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .participant {
+      float: left;
+      padding-bottom: 1em;
+      padding-right: 1em;
+    }
+
+    video {
+      border-radius: 50%;
+      height: 100px;
+      object-fit: cover;
+      overflow: hidden;
+      width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    // stub a variable ReactJS checks. ReactJS assumes you're using a bundler, NodeJS or similar system that provides it the `process.env.NODE_ENV` variable.
+    window.process = {
+      env: {
+        NODE_ENV: 'development'
+      }
+    };
+  </script>
+  <script src="./bundle.js"></script>
+</body>
+
+</html>
