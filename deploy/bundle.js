@@ -67871,7 +67871,7 @@ function main(prim) {
   return VideoaudiodataJs.main();
 }
 
-document.title = "Dorothy v0.03";
+document.title = "Dorothy v0.04";
 
 function reRenderApp(isLandscape, vhTrue) {
   var root = document.querySelector("#root");
@@ -68564,7 +68564,7 @@ exports.make = make;
 },{"react":121}],292:[function(require,module,exports){
 'use strict';
 
-console.log('start of vad module');
+console.log('start execution of vad module');
 const { LocalDataTrack, connect, createLocalTracks } = require('twilio-video');
 const ch = require('color-hash').default;
 const colorHash = new ch();
@@ -68575,7 +68575,7 @@ const canvas = document.getElementById('canvas');
 const form = document.getElementById('form');
 //const identityInput = document.getElementById('identity');
 //const nameInput = document.getElementById('name');
-const participants = document.getElementById('participants');
+//const participants = document.getElementById('participants');
 // move this assignment so it happens after dom is set up JB 20/05/21
 //const video = document.querySelector('#local-participant > video');
 //console.log('check connect id exists:');
@@ -68719,7 +68719,6 @@ function didDisconnect(error) {
   }
   document.getElementById('identity').disabled = false;
   document.getElementById('name').disabled = false;
-  //connectButton.disabled = false;
   document.getElementById('connect').disabled = false;
   document.getElementById('disconnect').disabled = true;
 }
@@ -68807,7 +68806,7 @@ function participantConnected(participant) {
 
   const videoElement = document.createElement('video');
   participantDiv.appendChild(videoElement);
-  participants.appendChild(participantDiv);
+  document.getElementById('participants').appendChild(participantDiv);
 
   participant.tracks.forEach(publication => trackPublished(participant, publication));
   participant.on('trackPublished', publication => trackPublished(participant, publication));
@@ -68853,15 +68852,16 @@ function trackSubscribed(participant, track) {
   if (track.kind === 'audio' || track.kind === 'video') {
     track.attach(`#${participant.sid} > video`);
   } else if (track.kind === 'data') {
-    const color = colorHash.hex(track.id);
-    track.on('message', data => {
-      console.log('Data recd:');
-      console.log(data);
-      const { mouseDown, mouseCoordinates: { x, y } } = JSON.parse(data);
-      if (mouseDown) {
-        drawCircle(canvas, color, x, y);
-      }
-    });
+    // temp disable to avoid colorhash type error JB 21/05/21
+    // const color = colorHash.hex(track.id);
+    // track.on('message', data => {
+    //   console.log('Data recd:');
+    //   console.log(data);
+    //   const { mouseDown, mouseCoordinates: { x, y } } = JSON.parse(data);
+    //   if (mouseDown) {
+    //     drawCircle(canvas, color, x, y);
+    //   }
+    // });
   }
 }
 

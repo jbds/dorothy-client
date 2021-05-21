@@ -9,7 +9,8 @@
 @val external w: 'a = "window"
 @val external setTimeout: (unit => unit, int) => float = "setTimeout"
 
-doc["title"] = "Dorothy v0.03"
+// sync with index.html so that we can avoid js cache when update needed, and check same
+doc["title"] = "Dorothy v0.05"
 
 // render can be device orientation specific by injecting isLandscape to use in the app
 // fix iOS Safari and Chrome feature/bug which reports vh incorrectly

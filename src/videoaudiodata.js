@@ -1,6 +1,6 @@
 'use strict';
 
-console.log('start of vad module');
+console.log('start execution of vad module');
 const { LocalDataTrack, connect, createLocalTracks } = require('twilio-video');
 const ch = require('color-hash').default;
 const colorHash = new ch();
@@ -288,15 +288,16 @@ function trackSubscribed(participant, track) {
   if (track.kind === 'audio' || track.kind === 'video') {
     track.attach(`#${participant.sid} > video`);
   } else if (track.kind === 'data') {
-    const color = colorHash.hex(track.id);
-    track.on('message', data => {
-      console.log('Data recd:');
-      console.log(data);
-      const { mouseDown, mouseCoordinates: { x, y } } = JSON.parse(data);
-      if (mouseDown) {
-        drawCircle(canvas, color, x, y);
-      }
-    });
+    // temp disable to avoid colorhash type error JB 21/05/21
+    // const color = colorHash.hex(track.id);
+    // track.on('message', data => {
+    //   console.log('Data recd:');
+    //   console.log(data);
+    //   const { mouseDown, mouseCoordinates: { x, y } } = JSON.parse(data);
+    //   if (mouseDown) {
+    //     drawCircle(canvas, color, x, y);
+    //   }
+    // });
   }
 }
 

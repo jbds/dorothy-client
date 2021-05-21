@@ -12,7 +12,7 @@ function main(prim) {
   return VideoaudiodataJs.main();
 }
 
-document.title = "Dorothy v0.03";
+document.title = "Dorothy v0.05";
 
 function reRenderApp(isLandscape, vhTrue) {
   var root = document.querySelector("#root");
