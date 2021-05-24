@@ -4,7 +4,7 @@ let make = (~isLandscape, ~vhTrue) => {
     ~position="fixed",
     ~top=isLandscape ? "40%" : "0",
     ~bottom=isLandscape ? "50%" : "100vw",
-    ~left=isLandscape ? Ute.getPercentVhTrueAsString(100.0, vhTrue) : "0",
+    //~left=isLandscape ? Ute.getPercentVhTrueAsString(100.0, vhTrue) : "0",
     ~right=isLandscape ? "0" : "46%",
     ~background="#e0e0f0",
     ~color="gray",
@@ -12,5 +12,5 @@ let make = (~isLandscape, ~vhTrue) => {
     ~overflowY="auto",
     (),
   )
-  <div style> <ContentVideo isLandscape /> </div>
+  <div style> <ContentVideo /> </div>
 }

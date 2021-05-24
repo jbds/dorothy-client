@@ -1,6 +1,8 @@
 'use strict';
-
 console.log('start execution of vad module');
+// we are using a rescript react widget, so bring into scope.
+var VideoStd = require('./Widgets/VideoStd.bs.js');
+
 const { LocalDataTrack, connect, createLocalTracks } = require('twilio-video');
 const ch = require('color-hash').default;
 const colorHash = new ch();
@@ -240,7 +242,9 @@ function participantConnected(participant) {
   participantDiv.className = 'participant';
   participantDiv.id = participant.sid;
 
-  const videoElement = document.createElement('video');
+  // replace plain tag with one that includes style info 
+  //const videoElement = document.createElement('video');
+  const videoElement = VideoStd.make;
   participantDiv.appendChild(videoElement);
   document.getElementById('participants').appendChild(participantDiv);
 

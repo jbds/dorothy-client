@@ -12,11 +12,13 @@ function VideoStd(Props) {
     objectFit: "cover"
   };
   return React.createElement("video", {
-              style: style
-            });
+    style: style
+  });
 }
 
 var make = VideoStd;
+
+window.VSfunc = VideoStd;
 
 exports.make = make;
 /* react Not a pure module */

@@ -5,10 +5,10 @@ let getStyle = (isLandscape, vhTrue) => {
   isLandscape
     ? ReactDOM.Style.make(
         ~position="fixed",
-        ~top=Ute.getPercentVhTrueAsString(58.0, vhTrue), //"58vh",
-        ~left=Ute.getPercentVhTrueAsString(19.0, vhTrue), //"19vh",
-        ~width=Ute.getPercentVhTrueAsString(58.0, vhTrue), //"58vh",
-        ~height=Ute.getPercentVhTrueAsString(17.0, vhTrue), //"17vh",
+        // ~top=Ute.getPercentVhTrueAsString(58.0, vhTrue), //"58vh",
+        // ~left=Ute.getPercentVhTrueAsString(19.0, vhTrue), //"19vh",
+        // ~width=Ute.getPercentVhTrueAsString(58.0, vhTrue), //"58vh",
+        // ~height=Ute.getPercentVhTrueAsString(17.0, vhTrue), //"17vh",
         ~zIndex="1",
         ~backgroundColor="#fff0d0",
         ~borderRadius="10px",

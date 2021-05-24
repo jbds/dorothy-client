@@ -1,5 +1,5 @@
 @react.component
-let make = (~isLandscape) => {
+let make = () => {
   //
   <>
     <div id="participants">

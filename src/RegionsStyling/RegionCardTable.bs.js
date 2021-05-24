@@ -4,22 +4,22 @@
 var Ute = require("../Modules/Ute.bs.js");
 var React = require("react");
 
-function getStyle(isLandscape, vhTrue) {
-  if (isLandscape) {
+function getStyle(state) {
+  if (state.isLandscape) {
     return {
             backgroundColor: "#003500",
             backgroundImage: "url(./assets/green_baize.jpg)",
-            height: Ute.getPercentVhTrueAsString(100.0, vhTrue),
+            height: Ute.getPercentageInnerHeightAsPxString(100.0, state.innerHeight),
             left: "0",
             position: "fixed",
             top: "0",
-            width: Ute.getPercentVhTrueAsString(100.0, vhTrue),
+            width: Ute.getPercentageInnerHeightAsPxString(100.0, state.innerHeight),
             backgroundSize: "cover"
           };
   } else {
     return {
             backgroundColor: "#003500",
-            backgroundImage: "url(../assets/green_baize.jpg)",
+            backgroundImage: "url(./assets/green_baize.jpg)",
             bottom: "0",
             height: "100vw",
             left: "0",
@@ -31,9 +31,8 @@ function getStyle(isLandscape, vhTrue) {
 }
 
 function RegionCardTable(Props) {
-  var isLandscape = Props.isLandscape;
-  var vhTrue = Props.vhTrue;
-  var style = getStyle(isLandscape, vhTrue);
+  var state = Props.state;
+  var style = getStyle(state);
   return React.createElement("div", {
               style: style
             }, null);

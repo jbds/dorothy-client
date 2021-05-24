@@ -2,9 +2,7 @@
 'use strict';
 
 var App = require("./App.bs.js");
-var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
-var Caml_obj = require("rescript/lib/js/caml_obj.js");
 var ReactDom = require("react-dom");
 var VideoaudiodataJs = require("./videoaudiodata.js");
 
@@ -12,37 +10,15 @@ function main(prim) {
   return VideoaudiodataJs.main();
 }
 
-document.title = "Dorothy v0.05";
+document.title = "Dorothy v0.09";
 
-function reRenderApp(isLandscape, vhTrue) {
-  var root = document.querySelector("#root");
-  if (root == null) {
-    console.log("Cannot find element with id='root'");
-  } else {
-    ReactDom.render(React.createElement(App.make, {
-              isLandscape: isLandscape,
-              vhTrue: vhTrue
-            }), root);
-  }
-  
+var root = document.querySelector("#root");
+
+if (root == null) {
+  console.log("Cannot find element with id='root'");
+} else {
+  ReactDom.render(React.createElement(App.make, {}), root);
 }
-
-function renderAllOnLoadOrResize(param) {
-  console.log("fn renderAllOnLoadOrResize..");
-  var isLandscape = Caml_obj.caml_lessthan(window.innerHeight, window.innerWidth);
-  var vhTrue = window.innerHeight * 0.01;
-  return reRenderApp(isLandscape, vhTrue);
-}
-
-Curry._2(window.addEventListener, "resize", (function (_event) {
-        console.log("event window resize..");
-        return renderAllOnLoadOrResize(undefined);
-      }));
-
-Curry._2(window.addEventListener, "load", (function (_event) {
-        console.log("event window load..");
-        return renderAllOnLoadOrResize(undefined);
-      }));
 
 function delayedaction(param) {
   console.log("after delay 2000ms");
@@ -50,11 +26,6 @@ function delayedaction(param) {
   
 }
 
-var dummyId = setTimeout(delayedaction, 2000);
-
 exports.main = main;
-exports.reRenderApp = reRenderApp;
-exports.renderAllOnLoadOrResize = renderAllOnLoadOrResize;
 exports.delayedaction = delayedaction;
-exports.dummyId = dummyId;
 /*  Not a pure module */

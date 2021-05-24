@@ -7,7 +7,7 @@ let make = (~isLandscape, ~vhTrue) => {
     ~position="fixed",
     ~top="0",
     ~bottom=isLandscape ? "60%" : "100vw",
-    ~left=isLandscape ? Ute.getPercentVhTrueAsString(100.0, vhTrue) : "54%",
+    //~left=isLandscape ? Ute.getPercentVhTrueAsString(100.0, vhTrue) : "54%",
     ~right=isLandscape ? "0" : "0",
     ~background="#f8f8f8",
     ~color="gray",

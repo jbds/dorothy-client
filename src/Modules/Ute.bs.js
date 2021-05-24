@@ -2,9 +2,9 @@
 'use strict';
 
 
-function getPercentVhTrueAsString(percentAsFloat, vhTrue) {
-  return (percentAsFloat * vhTrue).toFixed(0) + "px";
+function getPercentageInnerHeightAsPxString(percentAsFloat, innerHeight) {
+  return (percentAsFloat * innerHeight / 100.0).toFixed(0) + "px";
 }
 
-exports.getPercentVhTrueAsString = getPercentVhTrueAsString;
+exports.getPercentageInnerHeightAsPxString = getPercentageInnerHeightAsPxString;
 /* No side effect */
