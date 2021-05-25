@@ -6,17 +6,17 @@ var InputStd = require("../Widgets/InputStd.bs.js");
 var ButtonStd = require("../Widgets/ButtonStd.bs.js");
 
 function ContentTableSeating(Props) {
-  var isLandscape = Props.isLandscape;
+  var state = Props.state;
   return React.createElement(React.Fragment, undefined, React.createElement(InputStd.make, {
                   id: "identity"
                 }), React.createElement(InputStd.make, {
                   id: "name"
                 }), React.createElement(ButtonStd.make, {
-                  isLandscape: isLandscape,
+                  state: state,
                   label: "Join",
                   id: "connect"
                 }), React.createElement(ButtonStd.make, {
-                  isLandscape: isLandscape,
+                  state: state,
                   label: "Leave",
                   id: "disconnect"
                 }), React.createElement("div", undefined, "Hello Table Seating"), React.createElement("table", {
@@ -38,7 +38,7 @@ function ContentTableSeating(Props) {
                                 padding: "0vh 0vh 0vh 0vh"
                               }
                             }, React.createElement(ButtonStd.make, {
-                                  isLandscape: isLandscape,
+                                  state: state,
                                   label: "N",
                                   id: "x"
                                 })), React.createElement("td", {
@@ -49,7 +49,7 @@ function ContentTableSeating(Props) {
                                 padding: "0vh 0vh 0vh 0vh"
                               }
                             }, React.createElement(ButtonStd.make, {
-                                  isLandscape: isLandscape,
+                                  state: state,
                                   label: "E",
                                   id: "x"
                                 })), React.createElement("td", {
@@ -60,7 +60,7 @@ function ContentTableSeating(Props) {
                                 padding: "0vh 0vh 0vh 0vh"
                               }
                             }, React.createElement(ButtonStd.make, {
-                                  isLandscape: isLandscape,
+                                  state: state,
                                   label: "S",
                                   id: "x"
                                 })), React.createElement("td", {
@@ -71,7 +71,7 @@ function ContentTableSeating(Props) {
                                 padding: "0vh 0vh 0vh 0vh"
                               }
                             }, React.createElement(ButtonStd.make, {
-                                  isLandscape: isLandscape,
+                                  state: state,
                                   label: "W",
                                   id: "x"
                                 })), React.createElement("td", {
@@ -82,7 +82,7 @@ function ContentTableSeating(Props) {
                                 padding: "0vh 0vh 0vh 0vh"
                               }
                             }, React.createElement(ButtonStd.make, {
-                                  isLandscape: isLandscape,
+                                  state: state,
                                   label: "X",
                                   id: "x"
                                 })), React.createElement("td", {
@@ -93,7 +93,7 @@ function ContentTableSeating(Props) {
                                 padding: "0vh 0vh 0vh 0vh"
                               }
                             }, React.createElement(ButtonStd.make, {
-                                  isLandscape: isLandscape,
+                                  state: state,
                                   label: "Y",
                                   id: "x"
                                 })), React.createElement("td", {
@@ -104,7 +104,7 @@ function ContentTableSeating(Props) {
                                 padding: "0vh 0vh 0vh 0vh"
                               }
                             }, React.createElement(ButtonStd.make, {
-                                  isLandscape: isLandscape,
+                                  state: state,
                                   label: "Z",
                                   id: "x"
                                 }))))));

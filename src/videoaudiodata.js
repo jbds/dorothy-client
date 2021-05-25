@@ -238,15 +238,18 @@ async function main() {
  * @retruns {void}
  */
 function participantConnected(participant) {
-  const participantDiv = document.createElement('div');
-  participantDiv.className = 'participant';
-  participantDiv.id = participant.sid;
-
-  // replace plain tag with one that includes style info 
+  //const participantDiv = document.createElement('div');
+  //participantDiv.className = 'participant';
+  //participantDiv.id = participant.sid;
   //const videoElement = document.createElement('video');
-  const videoElement = VideoStd.make;
-  participantDiv.appendChild(videoElement);
-  document.getElementById('participants').appendChild(participantDiv);
+  //participantDiv.appendChild(videoElement);
+  //document.getElementById('participants').appendChild(participantDiv);
+  // JB 25/05/21
+  // set up the global variable to pass message
+  window.remoteparticipantid = participant.sid;
+  // trigger the action
+  document.getElementById('addremoteparticipantsid').click();
+
 
   participant.tracks.forEach(publication => trackPublished(participant, publication));
   participant.on('trackPublished', publication => trackPublished(participant, publication));
@@ -260,10 +263,14 @@ function participantConnected(participant) {
  */
 function participantDisconnected(participant) {
   console.log(`RemoteParticipant "${participant.identity}" disconnected`);
-  const participantDiv = document.getElementById(participant.sid);
-  if (participantDiv) {
-    participantDiv.remove();
-  }
+  // const participantDiv = document.getElementById(participant.sid);
+  // if (participantDiv) {
+  //   participantDiv.remove();
+  // }
+  // set up the global variable to pass message
+  window.remoteparticipantid = participant.sid;
+  // trigger the action
+  document.getElementById('removeremoteparticipantsid').click();
 }
 
 /**

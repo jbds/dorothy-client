@@ -33,7 +33,7 @@ let make = () => {
     //<RegionCardTableTLHS state />
     //<RegionCardTableBRHS state />
     <RegionVideo state />
-    // <RegionTableSeating isLandscape vhTrue />
+    <RegionTableSeating state />
     // <RegionScoreSheet isLandscape vhTrue />
     // <RegionBiddingHistory isLandscape vhTrue />
     // <RegionBiddingKeyboard isLandscape vhTrue />

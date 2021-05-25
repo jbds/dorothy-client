@@ -5,10 +5,12 @@ var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var Global = require("./Global.bs.js");
 var RegionVideo = require("./RegionsStyling/RegionVideo.bs.js");
+var RegionTableSeating = require("./RegionsStyling/RegionTableSeating.bs.js");
 
 function App(Props) {
   var match = React.useReducer(Global.reducer, Global.initialState);
   var dispatch = match[1];
+  var state = match[0];
   return React.createElement(React.Fragment, undefined, React.createElement("button", {
                   id: "resizecomponents",
                   style: {
@@ -16,7 +18,7 @@ function App(Props) {
                   },
                   onClick: (function (param) {
                       return Curry._1(dispatch, {
-                                  TAG: /* ResizeComponents */2,
+                                  TAG: /* ResizeComponents */0,
                                   _0: Global.innerHeightRef.contents,
                                   _1: Global.isLandscapeRef.contents
                                 });
@@ -28,7 +30,7 @@ function App(Props) {
                   },
                   onClick: (function (param) {
                       return Curry._1(dispatch, {
-                                  TAG: /* AddRemoteParticipantSid */3,
+                                  TAG: /* AddRemoteParticipantSid */1,
                                   _0: window.remoteparticipantid
                                 });
                     })
@@ -39,12 +41,14 @@ function App(Props) {
                   },
                   onClick: (function (param) {
                       return Curry._1(dispatch, {
-                                  TAG: /* RemoveRemoteParticipantSid */4,
+                                  TAG: /* RemoveRemoteParticipantSid */2,
                                   _0: window.remoteparticipantid
                                 });
                     })
                 }, "Rem"), React.createElement(RegionVideo.make, {
-                  state: match[0]
+                  state: state
+                }), React.createElement(RegionTableSeating.make, {
+                  state: state
                 }));
 }
 

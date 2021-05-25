@@ -10,7 +10,7 @@ function main(prim) {
   return VideoaudiodataJs.main();
 }
 
-document.title = "Dorothy v0.10";
+document.title = "Dorothy v0.12";
 
 var root = document.querySelector("#root");
 
@@ -26,6 +26,9 @@ function delayedaction(param) {
   
 }
 
+var dummyId = setTimeout(delayedaction, 2000);
+
 exports.main = main;
 exports.delayedaction = delayedaction;
+exports.dummyId = dummyId;
 /*  Not a pure module */

@@ -33,81 +33,71 @@ w["addEventListener"]("load", _event => {
 })
 
 // Reducer related types use by App component *****************************
-type state = {
+type localDevice = {
   // these three fields reflect current screen window configuration
   innerHeight: int,
   isLandscape: bool,
   videoContainerIds: array<string>,
 }
 
+type game = {count: int}
+
+type state = {
+  localDevice: localDevice,
+  game: game,
+}
+
 type action =
-  | Inc
-  | Dec
-  | Reset
-  | MultByN(int)
-  | MultByNM(int, int)
   | ResizeComponents(int, bool)
   | AddRemoteParticipantSid(string)
   | RemoveRemoteParticipantSid(string)
 
-let initialState = {
+let initialLocalDevice = {
   // when window load event fires, innerheight is updated
   innerHeight: 0,
   isLandscape: true,
   videoContainerIds: ["local-participant"],
 }
 
+let initialGame = {
+  count: 0,
+}
+
+let initialState = {
+  localDevice: initialLocalDevice,
+  game: initialGame,
+}
+
 let reducer = (state, action) => {
   switch action {
-  | Inc => {
-      ...state,
-      innerHeight: state.innerHeight + 1,
-    }
-  | Dec => {
-      ...state,
-      innerHeight: state.innerHeight - 1,
-    }
-  | Reset => {
-      ...state,
-      innerHeight: 0,
-    }
-  | MultByN(n) => {
-      ...state,
-      innerHeight: state.innerHeight * n,
-    }
-  | MultByNM(i, j) => {
-      ...state,
-      innerHeight: state.innerHeight * i * j,
-    }
   | ResizeComponents(n, bln) => {
-      ...state,
-      innerHeight: n,
-      isLandscape: bln,
+      let localDevice = {...state.localDevice, innerHeight: n, isLandscape: bln}
+      {
+        ...state,
+        localDevice: localDevice,
+      }
     }
   | AddRemoteParticipantSid(id) => {
-      let videoContainerIds = Js.Array.concat([id], state.videoContainerIds)
-      let newState = {
+      let videoContainerIds = Js.Array.concat([id], state.localDevice.videoContainerIds)
+      let localDevice = {...state.localDevice, videoContainerIds: videoContainerIds}
+      {
         ...state,
-        videoContainerIds: videoContainerIds,
+        localDevice: localDevice,
       }
-
-      //Js.log(newState)
-      newState
     }
   | RemoveRemoteParticipantSid(id) => {
-      let copyOfVideoContainerIds = Js.Array.copy(state.videoContainerIds)
+      let copyOfVideoContainerIds = Js.Array.copy(state.localDevice.videoContainerIds)
       let index = Js.Array.findIndex(x => x == id, copyOfVideoContainerIds)
       Js.log("index:" ++ Belt.Int.toString(index))
       let _dummy =
         index == -1
           ? []
           : Js.Array.spliceInPlace(~pos=index, ~remove=1, ~add=[], copyOfVideoContainerIds)
-      let newState = {
+      let localDevice = {...state.localDevice, videoContainerIds: copyOfVideoContainerIds}
+      {
         ...state,
-        videoContainerIds: copyOfVideoContainerIds,
+        localDevice: localDevice,
       }
-      Js.log(newState)
-      newState
     }
   }
 }

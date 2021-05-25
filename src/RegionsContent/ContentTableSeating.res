@@ -1,10 +1,10 @@
 @react.component
-let make = (~isLandscape) => {
+let make = (~state: Global.state) => {
   <>
     <InputStd id="identity" />
     <InputStd id="name" />
-    <ButtonStd label="Join" isLandscape id="connect" />
-    <ButtonStd label="Leave" isLandscape id="disconnect" />
+    <ButtonStd label="Join" state id="connect" />
+    <ButtonStd label="Leave" state id="disconnect" />
     <div> {React.string("Hello Table Seating")} </div>
     <table
       style={ReactDOM.Style.make(
@@ -24,7 +24,7 @@ let make = (~isLandscape) => {
               ~borderCollapse={"collapse"},
               (),
             )}>
-            <ButtonStd label="N" isLandscape id="x" />
+            <ButtonStd label="N" state id="x" />
           </td>
           <td
             style={ReactDOM.Style.make(
@@ -34,7 +34,7 @@ let make = (~isLandscape) => {
               ~borderCollapse={"collapse"},
               (),
             )}>
-            <ButtonStd label="E" isLandscape id="x" />
+            <ButtonStd label="E" state id="x" />
           </td>
           <td
             style={ReactDOM.Style.make(
@@ -44,7 +44,7 @@ let make = (~isLandscape) => {
               ~borderCollapse={"collapse"},
               (),
             )}>
-            <ButtonStd label="S" isLandscape id="x" />
+            <ButtonStd label="S" state id="x" />
           </td>
           <td
             style={ReactDOM.Style.make(
@@ -54,7 +54,7 @@ let make = (~isLandscape) => {
               ~borderCollapse={"collapse"},
               (),
             )}>
-            <ButtonStd label="W" isLandscape id="x" />
+            <ButtonStd label="W" state id="x" />
           </td>
           <td
             style={ReactDOM.Style.make(
@@ -64,7 +64,7 @@ let make = (~isLandscape) => {
               ~borderCollapse={"collapse"},
               (),
             )}>
-            <ButtonStd label="X" isLandscape id="x" />
+            <ButtonStd label="X" state id="x" />
           </td>
           <td
             style={ReactDOM.Style.make(
@@ -74,7 +74,7 @@ let make = (~isLandscape) => {
               ~borderCollapse={"collapse"},
               (),
             )}>
-            <ButtonStd label="Y" isLandscape id="x" />
+            <ButtonStd label="Y" state id="x" />
           </td>
           <td
             style={ReactDOM.Style.make(
@@ -84,7 +84,7 @@ let make = (~isLandscape) => {
               ~borderCollapse={"collapse"},
               (),
             )}>
-            <ButtonStd label="Z" isLandscape id="x" />
+            <ButtonStd label="Z" state id="x" />
           </td>
         </tr>
         // <tr style={ReactDOM.Style.make(~backgroundColor={"#f8f8f8"}, ~color={"#000000"}, ())}>

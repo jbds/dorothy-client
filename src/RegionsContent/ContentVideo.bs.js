@@ -9,9 +9,9 @@ var Belt_Array = require("rescript/lib/js/belt_Array.js");
 function ContentVideo(Props) {
   var state = Props.state;
   var style = {
-    margin: Ute.getPercentageInnerHeightAsPxString(0.5, state.innerHeight)
+    margin: Ute.getPercentageInnerHeightAsPxString(0.5, state.localDevice.innerHeight)
   };
-  var items = Belt_Array.map(state.videoContainerIds, (function (id) {
+  var items = Belt_Array.map(state.localDevice.videoContainerIds, (function (id) {
           return React.createElement("span", {
                       key: id,
                       id: id,

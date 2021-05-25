@@ -30,91 +30,84 @@ Curry._2(window.addEventListener, "load", (function (_event) {
         return updateUIStateOnLoadOrResize(undefined);
       }));
 
-var initialState_videoContainerIds = ["local-participant"];
+var initialLocalDevice_videoContainerIds = ["local-participant"];
 
-var initialState = {
+var initialLocalDevice = {
   innerHeight: 0,
   isLandscape: true,
-  videoContainerIds: initialState_videoContainerIds
+  videoContainerIds: initialLocalDevice_videoContainerIds
+};
+
+var initialGame = {
+  count: 0
+};
+
+var initialState = {
+  localDevice: initialLocalDevice,
+  game: initialGame
 };
 
 function reducer(state, action) {
-  if (typeof action === "number") {
-    switch (action) {
-      case /* Inc */0 :
-          return {
-                  innerHeight: state.innerHeight + 1 | 0,
-                  isLandscape: state.isLandscape,
-                  videoContainerIds: state.videoContainerIds
-                };
-      case /* Dec */1 :
-          return {
-                  innerHeight: state.innerHeight - 1 | 0,
-                  isLandscape: state.isLandscape,
-                  videoContainerIds: state.videoContainerIds
-                };
-      case /* Reset */2 :
-          return {
-                  innerHeight: 0,
-                  isLandscape: state.isLandscape,
-                  videoContainerIds: state.videoContainerIds
-                };
-      
-    }
-  } else {
-    switch (action.TAG | 0) {
-      case /* MultByN */0 :
-          return {
-                  innerHeight: Math.imul(state.innerHeight, action._0),
-                  isLandscape: state.isLandscape,
-                  videoContainerIds: state.videoContainerIds
-                };
-      case /* MultByNM */1 :
-          return {
-                  innerHeight: Math.imul(Math.imul(state.innerHeight, action._0), action._1),
-                  isLandscape: state.isLandscape,
-                  videoContainerIds: state.videoContainerIds
-                };
-      case /* ResizeComponents */2 :
-          return {
-                  innerHeight: action._0,
-                  isLandscape: action._1,
-                  videoContainerIds: state.videoContainerIds
-                };
-      case /* AddRemoteParticipantSid */3 :
-          var videoContainerIds = state.videoContainerIds.concat([action._0]);
-          return {
-                  innerHeight: state.innerHeight,
-                  isLandscape: state.isLandscape,
-                  videoContainerIds: videoContainerIds
-                };
-      case /* RemoveRemoteParticipantSid */4 :
-          var id = action._0;
-          var copyOfVideoContainerIds = state.videoContainerIds.slice();
-          var index = copyOfVideoContainerIds.findIndex(function (x) {
-                return x === id;
-              });
-          console.log("index:" + String(index));
-          if (index !== -1) {
-            copyOfVideoContainerIds.splice(index, 1);
-          }
-          var newState_innerHeight = state.innerHeight;
-          var newState_isLandscape = state.isLandscape;
-          var newState = {
-            innerHeight: newState_innerHeight,
-            isLandscape: newState_isLandscape,
-            videoContainerIds: copyOfVideoContainerIds
-          };
-          console.log(newState);
-          return newState;
-      
-    }
+  switch (action.TAG | 0) {
+    case /* ResizeComponents */0 :
+        var init = state.localDevice;
+        var localDevice_innerHeight = action._0;
+        var localDevice_isLandscape = action._1;
+        var localDevice_videoContainerIds = init.videoContainerIds;
+        var localDevice = {
+          innerHeight: localDevice_innerHeight,
+          isLandscape: localDevice_isLandscape,
+          videoContainerIds: localDevice_videoContainerIds
+        };
+        return {
+                localDevice: localDevice,
+                game: state.game
+              };
+    case /* AddRemoteParticipantSid */1 :
+        var videoContainerIds = state.localDevice.videoContainerIds.concat([action._0]);
+        var init$1 = state.localDevice;
+        var localDevice_innerHeight$1 = init$1.innerHeight;
+        var localDevice_isLandscape$1 = init$1.isLandscape;
+        var localDevice$1 = {
+          innerHeight: localDevice_innerHeight$1,
+          isLandscape: localDevice_isLandscape$1,
+          videoContainerIds: videoContainerIds
+        };
+        return {
+                localDevice: localDevice$1,
+                game: state.game
+              };
+    case /* RemoveRemoteParticipantSid */2 :
+        var id = action._0;
+        var copyOfVideoContainerIds = state.localDevice.videoContainerIds.slice();
+        var index = copyOfVideoContainerIds.findIndex(function (x) {
+              return x === id;
+            });
+        console.log("index:" + String(index));
+        if (index !== -1) {
+          copyOfVideoContainerIds.splice(index, 1);
+        }
+        var init$2 = state.localDevice;
+        var localDevice_innerHeight$2 = init$2.innerHeight;
+        var localDevice_isLandscape$2 = init$2.isLandscape;
+        var localDevice$2 = {
+          innerHeight: localDevice_innerHeight$2,
+          isLandscape: localDevice_isLandscape$2,
+          videoContainerIds: copyOfVideoContainerIds
+        };
+        return {
+                localDevice: localDevice$2,
+                game: state.game
+              };
+    
   }
 }
 
 exports.innerHeightRef = innerHeightRef;
 exports.isLandscapeRef = isLandscapeRef;
 exports.updateUIStateOnLoadOrResize = updateUIStateOnLoadOrResize;
+exports.initialLocalDevice = initialLocalDevice;
+exports.initialGame = initialGame;
 exports.initialState = initialState;
 exports.reducer = reducer;
 /*  Not a pure module */

@@ -5,16 +5,16 @@ var Ute = require("../Modules/Ute.bs.js");
 var React = require("react");
 
 function getStyle(state) {
-  if (state.isLandscape) {
+  if (state.localDevice.isLandscape) {
     return {
             backgroundColor: "#fff0d0",
-            height: Ute.getPercentageInnerHeightAsPxString(5.0, state.innerHeight),
-            left: Ute.getPercentageInnerHeightAsPxString(0.0, state.innerHeight),
+            height: Ute.getPercentageInnerHeightAsPxString(5.0, state.localDevice.innerHeight),
+            left: Ute.getPercentageInnerHeightAsPxString(0.0, state.localDevice.innerHeight),
             position: "fixed",
-            top: Ute.getPercentageInnerHeightAsPxString(0.0, state.innerHeight),
-            width: Ute.getPercentageInnerHeightAsPxString(5.0, state.innerHeight),
+            top: Ute.getPercentageInnerHeightAsPxString(0.0, state.localDevice.innerHeight),
+            width: Ute.getPercentageInnerHeightAsPxString(5.0, state.localDevice.innerHeight),
             zIndex: "1",
-            borderRadius: Ute.getPercentageInnerHeightAsPxString(2.5, state.innerHeight)
+            borderRadius: Ute.getPercentageInnerHeightAsPxString(2.5, state.localDevice.innerHeight)
           };
   } else {
     return {

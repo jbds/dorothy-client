@@ -4,12 +4,12 @@
 var React = require("react");
 
 function ContentScoreSheet(Props) {
-  var isLandscape = Props.isLandscape;
+  var state = Props.state;
   return React.createElement(React.Fragment, undefined, React.createElement("div", undefined, "Hello Scoresheet"), React.createElement("table", {
                   style: {
                     color: "#26653B",
                     fontFamily: "Trebuchet MS",
-                    fontSize: isLandscape ? "1.9vh" : "1.9vw",
+                    fontSize: state.localDevice.isLandscape ? "1.9vh" : "1.9vw",
                     margin: "auto",
                     textAlign: "center"
                   }

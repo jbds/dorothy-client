@@ -5,15 +5,15 @@ var Ute = require("../Modules/Ute.bs.js");
 var React = require("react");
 
 function getStyle(state) {
-  if (state.isLandscape) {
+  if (state.localDevice.isLandscape) {
     return {
             backgroundColor: "#003500",
             backgroundImage: "url(./assets/green_baize.jpg)",
-            height: Ute.getPercentageInnerHeightAsPxString(100.0, state.innerHeight),
+            height: Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight),
             left: "0",
             position: "fixed",
             top: "0",
-            width: Ute.getPercentageInnerHeightAsPxString(100.0, state.innerHeight),
+            width: Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight),
             backgroundSize: "cover"
           };
   } else {

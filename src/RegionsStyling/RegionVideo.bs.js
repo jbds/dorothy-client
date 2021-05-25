@@ -9,14 +9,14 @@ function RegionVideo(Props) {
   var state = Props.state;
   var style = {
     background: "#e0e0f0",
-    bottom: state.isLandscape ? "50%" : "100vw",
+    bottom: state.localDevice.isLandscape ? "50%" : "100vw",
     color: "gray",
-    left: state.isLandscape ? Ute.getPercentageInnerHeightAsPxString(100.0, state.innerHeight) : "0",
+    left: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight) : "0",
     overflowY: "auto",
     position: "fixed",
-    right: state.isLandscape ? "0" : "46%",
+    right: state.localDevice.isLandscape ? "0" : "46%",
     textAlign: "center",
-    top: state.isLandscape ? "40%" : "0"
+    top: state.localDevice.isLandscape ? "40%" : "0"
   };
   return React.createElement("div", {
               style: style

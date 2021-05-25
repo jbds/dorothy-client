@@ -1,6 +1,6 @@
 @react.component
 let make = (
-  ~isLandscape: bool,
+  ~state: Global.state,
   // // ~dispatch: Global.action => unit,
   // // ~action: Global.action,
   ~label: string,
@@ -18,9 +18,9 @@ let make = (
       // portrait use on iPad aspect ratio empirically suggeste reduction in font size ~10%
       style={ReactDOM.Style.make(
         ~color,
-        ~fontSize=isLandscape ? "1.9vh" : "1.7vw",
+        ~fontSize=state.localDevice.isLandscape ? "1.9vh" : "1.7vw",
         ~fontFamily="Trebuchet MS",
-        ~height=isLandscape ? "5.0vh" : "4.5vw",
+        ~height=state.localDevice.isLandscape ? "5.0vh" : "4.5vw",
         ~margin="0vh 0.5vh 0vh 0vh",
         // bug/quirk - borderColor single attribute not recognised
         ~border="1px solid #26653B",
