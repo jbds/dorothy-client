@@ -4,13 +4,12 @@
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var Global = require("./Global.bs.js");
-var RegionCardTable = require("./RegionsStyling/RegionCardTable.bs.js");
+var RegionVideo = require("./RegionsStyling/RegionVideo.bs.js");
 
 function App(Props) {
   var match = React.useReducer(Global.reducer, Global.initialState);
   var dispatch = match[1];
-  var state = match[0];
-  return React.createElement(React.Fragment, undefined, "state.innerHeight:" + String(state.innerHeight), "state.isLandscape:" + String(state.isLandscape), React.createElement("div", {
+  return React.createElement(React.Fragment, undefined, React.createElement("button", {
                   id: "resizecomponents",
                   style: {
                     display: "none"
@@ -22,8 +21,30 @@ function App(Props) {
                                   _1: Global.isLandscapeRef.contents
                                 });
                     })
-                }), React.createElement(RegionCardTable.make, {
-                  state: state
+                }, "Res"), React.createElement("button", {
+                  id: "addremoteparticipantsid",
+                  style: {
+                    display: "show"
+                  },
+                  onClick: (function (param) {
+                      return Curry._1(dispatch, {
+                                  TAG: /* AddRemoteParticipantSid */3,
+                                  _0: window.remoteparticipantid
+                                });
+                    })
+                }, "Add"), React.createElement("button", {
+                  id: "removeremoteparticipantsid",
+                  style: {
+                    display: "show"
+                  },
+                  onClick: (function (param) {
+                      return Curry._1(dispatch, {
+                                  TAG: /* RemoveRemoteParticipantSid */4,
+                                  _0: window.remoteparticipantid
+                                });
+                    })
+                }, "Rem"), React.createElement(RegionVideo.make, {
+                  state: match[0]
                 }));
 }
 

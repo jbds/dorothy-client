@@ -30,23 +30,34 @@ Curry._2(window.addEventListener, "load", (function (_event) {
         return updateUIStateOnLoadOrResize(undefined);
       }));
 
+var initialState_videoContainerIds = ["local-participant"];
+
+var initialState = {
+  innerHeight: 0,
+  isLandscape: true,
+  videoContainerIds: initialState_videoContainerIds
+};
+
 function reducer(state, action) {
   if (typeof action === "number") {
     switch (action) {
       case /* Inc */0 :
           return {
                   innerHeight: state.innerHeight + 1 | 0,
-                  isLandscape: state.isLandscape
+                  isLandscape: state.isLandscape,
+                  videoContainerIds: state.videoContainerIds
                 };
       case /* Dec */1 :
           return {
                   innerHeight: state.innerHeight - 1 | 0,
-                  isLandscape: state.isLandscape
+                  isLandscape: state.isLandscape,
+                  videoContainerIds: state.videoContainerIds
                 };
       case /* Reset */2 :
           return {
                   innerHeight: 0,
-                  isLandscape: state.isLandscape
+                  isLandscape: state.isLandscape,
+                  videoContainerIds: state.videoContainerIds
                 };
       
     }
@@ -55,27 +66,51 @@ function reducer(state, action) {
       case /* MultByN */0 :
           return {
                   innerHeight: Math.imul(state.innerHeight, action._0),
-                  isLandscape: state.isLandscape
+                  isLandscape: state.isLandscape,
+                  videoContainerIds: state.videoContainerIds
                 };
       case /* MultByNM */1 :
           return {
                   innerHeight: Math.imul(Math.imul(state.innerHeight, action._0), action._1),
-                  isLandscape: state.isLandscape
+                  isLandscape: state.isLandscape,
+                  videoContainerIds: state.videoContainerIds
                 };
       case /* ResizeComponents */2 :
           return {
                   innerHeight: action._0,
-                  isLandscape: action._1
+                  isLandscape: action._1,
+                  videoContainerIds: state.videoContainerIds
                 };
+      case /* AddRemoteParticipantSid */3 :
+          var videoContainerIds = state.videoContainerIds.concat([action._0]);
+          return {
+                  innerHeight: state.innerHeight,
+                  isLandscape: state.isLandscape,
+                  videoContainerIds: videoContainerIds
+                };
+      case /* RemoveRemoteParticipantSid */4 :
+          var id = action._0;
+          var copyOfVideoContainerIds = state.videoContainerIds.slice();
+          var index = copyOfVideoContainerIds.findIndex(function (x) {
+                return x === id;
+              });
+          console.log("index:" + String(index));
+          if (index !== -1) {
+            copyOfVideoContainerIds.splice(index, 1);
+          }
+          var newState_innerHeight = state.innerHeight;
+          var newState_isLandscape = state.isLandscape;
+          var newState = {
+            innerHeight: newState_innerHeight,
+            isLandscape: newState_isLandscape,
+            videoContainerIds: copyOfVideoContainerIds
+          };
+          console.log(newState);
+          return newState;
       
     }
   }
 }
-
-var initialState = {
-  innerHeight: 0,
-  isLandscape: true
-};
 
 exports.innerHeightRef = innerHeightRef;
 exports.isLandscapeRef = isLandscapeRef;

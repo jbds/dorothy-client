@@ -1,17 +1,15 @@
-// Note 'make' params used differ on orientation
-
 // padding must be (default) zero to align box edges region card table edge
-let getStyle = (isLandscape, vhTrue) => {
-  isLandscape
+let getStyle = (state: Global.state) => {
+  state.isLandscape
     ? ReactDOM.Style.make(
         ~position="fixed",
-        //~top=Ute.getPercentVhTrueAsString(0.0, vhTrue), //"vh",
-        //~left=Ute.getPercentVhTrueAsString(0.0, vhTrue), //"vh",
-        //~width=Ute.getPercentVhTrueAsString(5.0, vhTrue), //"vh",
-        //~height=Ute.getPercentVhTrueAsString(5.0, vhTrue), //"vh",
+        ~top=Ute.getPercentageInnerHeightAsPxString(0.0, state.innerHeight),
+        ~left=Ute.getPercentageInnerHeightAsPxString(0.0, state.innerHeight),
+        ~width=Ute.getPercentageInnerHeightAsPxString(5.0, state.innerHeight),
+        ~height=Ute.getPercentageInnerHeightAsPxString(5.0, state.innerHeight),
         ~zIndex="1",
         ~backgroundColor="#fff0d0",
-        //~borderRadius=Ute.getPercentVhTrueAsString(2.5, vhTrue),
+        ~borderRadius=Ute.getPercentageInnerHeightAsPxString(2.5, state.innerHeight),
         (),
       )
     : ReactDOM.Style.make(
@@ -28,7 +26,7 @@ let getStyle = (isLandscape, vhTrue) => {
 }
 
 @react.component
-let make = (~isLandscape, ~vhTrue) => {
-  let style = getStyle(isLandscape, vhTrue)
+let make = (~state) => {
+  let style = getStyle(state)
   <div style> {React.null} </div>
 }

@@ -10,7 +10,7 @@ function main(prim) {
   return VideoaudiodataJs.main();
 }
 
-document.title = "Dorothy v0.09";
+document.title = "Dorothy v0.10";
 
 var root = document.querySelector("#root");
 

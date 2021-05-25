@@ -34,9 +34,10 @@ w["addEventListener"]("load", _event => {
 
 // Reducer related types use by App component *****************************
 type state = {
-  // these two fields reflect current screen window configuration
+  // these three fields reflect current screen window configuration
   innerHeight: int,
   isLandscape: bool,
+  videoContainerIds: array<string>,
 }
 
 type action =
@@ -46,11 +47,14 @@ type action =
   | MultByN(int)
   | MultByNM(int, int)
   | ResizeComponents(int, bool)
+  | AddRemoteParticipantSid(string)
+  | RemoveRemoteParticipantSid(string)
 
 let initialState = {
   // when window load event fires, innerheight is updated
   innerHeight: 0,
   isLandscape: true,
+  videoContainerIds: ["local-participant"],
 }
 
 let reducer = (state, action) => {
@@ -76,8 +80,34 @@ let reducer = (state, action) => {
       innerHeight: state.innerHeight * i * j,
     }
   | ResizeComponents(n, bln) => {
+      ...state,
       innerHeight: n,
       isLandscape: bln,
+    }
+  | AddRemoteParticipantSid(id) => {
+      let videoContainerIds = Js.Array.concat([id], state.videoContainerIds)
+      let newState = {
+        ...state,
+        videoContainerIds: videoContainerIds,
+      }
+
+      //Js.log(newState)
+      newState
+    }
+  | RemoveRemoteParticipantSid(id) => {
+      let copyOfVideoContainerIds = Js.Array.copy(state.videoContainerIds)
+      let index = Js.Array.findIndex(x => x == id, copyOfVideoContainerIds)
+      Js.log("index:" ++ Belt.Int.toString(index))
+      let _dummy =
+        index == -1
+          ? []
+          : Js.Array.spliceInPlace(~pos=index, ~remove=1, ~add=[], copyOfVideoContainerIds)
+      let newState = {
+        ...state,
+        videoContainerIds: copyOfVideoContainerIds,
+      }
+      Js.log(newState)
+      newState
     }
   }
 }
