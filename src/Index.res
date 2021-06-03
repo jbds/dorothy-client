@@ -9,7 +9,7 @@
 @val external setTimeout: (unit => unit, int) => float = "setTimeout"
 
 // change title in index.html too, so that we can avoid js cache when update needed, and check same
-doc["title"] = "Dorothy v0.12"
+doc["title"] = "Dorothy v0.13"
 
 //test only
 //w["remoteparticipantid"] = "456ABC"
