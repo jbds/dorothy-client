@@ -197,6 +197,11 @@ async function main() {
       console.log(`Got Access Token "${token}"`);
 
       if (token.search(/error/i) !== -1) {
+        // rollback
+        document.getElementById('identity').disabled = false;
+        document.getElementById('name').disabled = false;
+        document.getElementById('connect').disabled = false;
+        document.getElementById('disconnect').disabled = true;
         alert(token);
       } else {
         console.log('Attempting to connect...');
