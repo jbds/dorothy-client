@@ -196,23 +196,28 @@ async function main() {
       const token = await getToken(identityExtended);
       console.log(`Got Access Token "${token}"`);
 
-      console.log('Attempting to connect...');
-      connectAttempt = connect(token, {
-        name,
-        tracks
-      });
+      if (token.search(/error/i) !== -1) {
+        alert(token);
+      } else {
+        console.log('Attempting to connect...');
+        connectAttempt = connect(token, {
+          name,
+          tracks
+        });
 
-      room = await connectAttempt;
-      console.log(`Connected to Room "${room.name}"`);
+        room = await connectAttempt;
+        console.log(`Connected to Room "${room.name}"`);
 
-      // NOTE(mroberts): Save a reference to `room` on `window` for debugging.
-      window.room = room;
+        // NOTE(mroberts): Save a reference to `room` on `window` for debugging.
+        window.room = room;
 
-      room.once('disconnected', didDisconnect);
+        room.once('disconnected', didDisconnect);
 
-      room.participants.forEach(participantConnected);
-      room.on('participantConnected', participantConnected);
-      room.on('participantDisconnected', participantDisconnected);
+        room.participants.forEach(participantConnected);
+        room.on('participantConnected', participantConnected);
+        room.on('participantDisconnected', participantDisconnected);
+      }
+
     } catch (error) {
       didDisconnect(error);
     }

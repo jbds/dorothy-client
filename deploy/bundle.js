@@ -68897,7 +68897,7 @@ function main(prim) {
   return VideoaudiodataJs.main();
 }
 
-document.title = "Dorothy v0.12";
+document.title = "Dorothy v0.13";
 
 var root = document.querySelector("#root");
 
@@ -69429,9 +69429,10 @@ async function main() {
     try {
       const identity = document.getElementById('identity').value;
       const name = document.getElementById('name').value;
+      const identityExtended = identity + '_' + name
 
       console.log('Getting Access Token...');
-      const token = await getToken(identity);
+      const token = await getToken(identityExtended);
       console.log(`Got Access Token "${token}"`);
 
       console.log('Attempting to connect...');
