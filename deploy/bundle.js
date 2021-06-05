@@ -68723,45 +68723,65 @@ function App(Props) {
   var match = React.useReducer(Global.reducer, Global.initialState);
   var dispatch = match[1];
   var state = match[0];
+  window.gameState = state.game;
+  console.log("statechange:", state.game);
+  console.log("snuck in");
+  if (window.localDataTrack == undefined) {
+    console.log('skip on lDT undefined')
+  } else {
+    window.localDataTrack.send("ABC");
+  }
+  console.log("snuck out");
   return React.createElement(React.Fragment, undefined, React.createElement("button", {
-                  id: "resizecomponents",
-                  style: {
-                    display: "none"
-                  },
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, {
-                                  TAG: /* ResizeComponents */0,
-                                  _0: Global.innerHeightRef.contents,
-                                  _1: Global.isLandscapeRef.contents
-                                });
-                    })
-                }, "Res"), React.createElement("button", {
-                  id: "addremoteparticipantsid",
-                  style: {
-                    display: "show"
-                  },
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, {
-                                  TAG: /* AddRemoteParticipantSid */1,
-                                  _0: window.remoteparticipantid
-                                });
-                    })
-                }, "Add"), React.createElement("button", {
-                  id: "removeremoteparticipantsid",
-                  style: {
-                    display: "show"
-                  },
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, {
-                                  TAG: /* RemoveRemoteParticipantSid */2,
-                                  _0: window.remoteparticipantid
-                                });
-                    })
-                }, "Rem"), React.createElement(RegionVideo.make, {
-                  state: state
-                }), React.createElement(RegionTableSeating.make, {
-                  state: state
-                }));
+    id: "resizecomponents",
+    style: {
+      display: "none"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* ResizeComponents */0,
+        _0: Global.innerHeightRef.contents,
+        _1: Global.isLandscapeRef.contents
+      });
+    })
+  }, "Res"), React.createElement("button", {
+    id: "addremoteparticipantsid",
+    style: {
+      display: "show"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* AddRemoteParticipantSid */1,
+        _0: window.remoteparticipantid
+      });
+    })
+  }, "Add"), React.createElement("button", {
+    id: "removeremoteparticipantsid",
+    style: {
+      display: "show"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* RemoveRemoteParticipantSid */2,
+        _0: window.remoteparticipantid
+      });
+    })
+  }, "Rem"), React.createElement("button", {
+    id: "testchangeofgamestate",
+    style: {
+      display: "show"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* TestChangeOfGameState */3,
+        _0: 1
+      });
+    })
+  }, "ChangeGameState"), React.createElement(RegionVideo.make, {
+    state: state
+  }), React.createElement(RegionTableSeating.make, {
+    state: state
+  }));
 }
 
 var make = App;
@@ -68871,6 +68891,15 @@ function reducer(state, action) {
                 localDevice: localDevice$2,
                 game: state.game
               };
+    case /* TestChangeOfGameState */3 :
+        var count = state.game.count + action._0 | 0;
+        var game = {
+          count: count
+        };
+        return {
+                localDevice: state.localDevice,
+                game: game
+              };
     
   }
 }
@@ -68897,7 +68926,7 @@ function main(prim) {
   return VideoaudiodataJs.main();
 }
 
-document.title = "Dorothy v0.14";
+document.title = "Dorothy v0.16";
 
 var root = document.querySelector("#root");
 
@@ -69266,91 +69295,86 @@ const form = document.getElementById('form');
 function setupLocalDataTrack() {
   const dataTrack = new LocalDataTrack();
 
-  let mouseDown;
-  let mouseCoordinates;
-  //let touchCoordinates;
+  // let mouseDown;
+  // let mouseCoordinates;
 
-  window.addEventListener('mousedown', () => {
-    mouseDown = true;
-  }, false);
+  // window.addEventListener('mousedown', () => {
+  //   mouseDown = true;
+  // }, false);
 
-  window.addEventListener('mouseup', () => {
-    mouseDown = false;
-  }, false);
+  // window.addEventListener('mouseup', () => {
+  //   mouseDown = false;
+  // }, false);
 
-  window.addEventListener('mousemove', event => {
-    const { pageX: x, pageY: y } = event;
-    mouseCoordinates = { x, y };
+  // window.addEventListener('mousemove', event => {
+  //   const { pageX: x, pageY: y } = event;
+  //   mouseCoordinates = { x, y };
 
-    if (mouseDown) {
-      const color = colorHash.hex(dataTrack.id);
-      drawCircle(canvas, color, x, y);
+  //   if (mouseDown) {
+  //     const color = colorHash.hex(dataTrack.id);
+  //     drawCircle(canvas, color, x, y);
 
-      dataTrack.send(JSON.stringify({
-        mouseDown,
-        mouseCoordinates
-      }));
+  //     dataTrack.send(JSON.stringify({
+  //       mouseDown,
+  //       mouseCoordinates
+  //     }));
 
-      console.log('Send JSON:');
-      console.log(JSON.stringify({
-        mouseDown,
-        mouseCoordinates
-      }));
-    }
-  }, false);
+  //     console.log('Send JSON:');
+  //     console.log(JSON.stringify({
+  //       mouseDown,
+  //       mouseCoordinates
+  //     }));
+  //   }
+  // }, false);
 
-  // use lexical scope, not function scope
-  //function touchstartHandler(e) {
-  let touchstartHandler = (e) => {
-    const mouseDown = true;
-    let mouseCoordinates = {};
-    document.title = 'touchstart';
-    //dataTrack.send('Touch Start msg');
-    //dataTrack.send('{ "mouseDown": true, "mouseCoordinates": { "x": 200, "y": 200 } }');
-    mouseCoordinates.x = e.targetTouches[0].pageX;
-    mouseCoordinates.y = 200;
+  // // use lexical scope, not function scope
+  // let touchstartHandler = (e) => {
+  //   const mouseDown = true;
+  //   let mouseCoordinates = {};
+  //   document.title = 'touchstart';
+  //   mouseCoordinates.x = e.targetTouches[0].pageX;
+  //   mouseCoordinates.y = 200;
 
-    dataTrack.send(JSON.stringify({
-      mouseDown,
-      mouseCoordinates
-    }));
+  //   dataTrack.send(JSON.stringify({
+  //     mouseDown,
+  //     mouseCoordinates
+  //   }));
 
-  }
+  // }
 
-  function touchendHandler(e) {
-    document.title = 'touchend';
-  }
+  // function touchendHandler(e) {
+  //   document.title = 'touchend';
+  // }
 
-  function touchmoveHandler(e) {
-    const mouseDown = true;
-    let x = 0;
-    let mouseCoordinates = {};
-    //document.title = Date.now();
-    //document.title = e.targetTouches[0].pageX;
-    document.title = e.targetTouches[0].pageX;
-    // const { pageX: x, pageY: y } = e.targetTouches[0];
-    // touchCoordinates = { x, y };
-    const color = colorHash.hex(dataTrack.id);
-    drawCircle(canvas, color, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+  // function touchmoveHandler(e) {
+  //   const mouseDown = true;
+  //   let x = 0;
+  //   let mouseCoordinates = {};
+  //   document.title = e.targetTouches[0].pageX;
+  //   const color = colorHash.hex(dataTrack.id);
+  //   drawCircle(canvas, color, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
 
-    mouseCoordinates.x = e.targetTouches[0].pageX;
-    mouseCoordinates.y = e.targetTouches[0].pageY;
+  //   mouseCoordinates.x = e.targetTouches[0].pageX;
+  //   mouseCoordinates.y = e.targetTouches[0].pageY;
 
-    //dataTrack.send('{ "mouseDown": true, "mouseCoordinates": { "x": x, "y": 300 } }');
-    dataTrack.send(JSON.stringify({
-      mouseDown,
-      mouseCoordinates
-    }));
+  //   dataTrack.send(JSON.stringify({
+  //     mouseDown,
+  //     mouseCoordinates
+  //   }));
 
-    //e.preventDefault();
+  //   //e.preventDefault();
 
-  }
+  // }
 
 
-  // added JB 
-  window.addEventListener('touchstart', touchstartHandler, false);
-  window.addEventListener('touchend', touchendHandler, false);
-  window.addEventListener('touchmove', touchmoveHandler, false);
+  // // added JB 
+  // window.addEventListener('touchstart', touchstartHandler, false);
+  // window.addEventListener('touchend', touchendHandler, false);
+  // window.addEventListener('touchmove', touchmoveHandler, false);
+
+  // setup a global reference to this datatrack, so we can call
+  // the .send method
+  window.localDataTrack = dataTrack;
 
   return dataTrack;
 }
@@ -69436,6 +69460,11 @@ async function main() {
       console.log(`Got Access Token "${token}"`);
 
       if (token.search(/error/i) !== -1) {
+        // rollback
+        document.getElementById('identity').disabled = false;
+        document.getElementById('name').disabled = false;
+        document.getElementById('connect').disabled = false;
+        document.getElementById('disconnect').disabled = true;
         alert(token);
       } else {
         console.log('Attempting to connect...');

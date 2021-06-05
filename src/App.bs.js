@@ -11,45 +11,65 @@ function App(Props) {
   var match = React.useReducer(Global.reducer, Global.initialState);
   var dispatch = match[1];
   var state = match[0];
+  window.gameState = state.game;
+  console.log("statechange:", state.game);
+  console.log("snuck in");
+  if (window.localDataTrack == undefined) {
+    console.log('skip on lDT undefined')
+  } else {
+    window.localDataTrack.send("ABC");
+  }
+  console.log("snuck out");
   return React.createElement(React.Fragment, undefined, React.createElement("button", {
-                  id: "resizecomponents",
-                  style: {
-                    display: "none"
-                  },
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, {
-                                  TAG: /* ResizeComponents */0,
-                                  _0: Global.innerHeightRef.contents,
-                                  _1: Global.isLandscapeRef.contents
-                                });
-                    })
-                }, "Res"), React.createElement("button", {
-                  id: "addremoteparticipantsid",
-                  style: {
-                    display: "show"
-                  },
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, {
-                                  TAG: /* AddRemoteParticipantSid */1,
-                                  _0: window.remoteparticipantid
-                                });
-                    })
-                }, "Add"), React.createElement("button", {
-                  id: "removeremoteparticipantsid",
-                  style: {
-                    display: "show"
-                  },
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, {
-                                  TAG: /* RemoveRemoteParticipantSid */2,
-                                  _0: window.remoteparticipantid
-                                });
-                    })
-                }, "Rem"), React.createElement(RegionVideo.make, {
-                  state: state
-                }), React.createElement(RegionTableSeating.make, {
-                  state: state
-                }));
+    id: "resizecomponents",
+    style: {
+      display: "none"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* ResizeComponents */0,
+        _0: Global.innerHeightRef.contents,
+        _1: Global.isLandscapeRef.contents
+      });
+    })
+  }, "Res"), React.createElement("button", {
+    id: "addremoteparticipantsid",
+    style: {
+      display: "show"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* AddRemoteParticipantSid */1,
+        _0: window.remoteparticipantid
+      });
+    })
+  }, "Add"), React.createElement("button", {
+    id: "removeremoteparticipantsid",
+    style: {
+      display: "show"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* RemoveRemoteParticipantSid */2,
+        _0: window.remoteparticipantid
+      });
+    })
+  }, "Rem"), React.createElement("button", {
+    id: "testchangeofgamestate",
+    style: {
+      display: "show"
+    },
+    onClick: (function (param) {
+      return Curry._1(dispatch, {
+        TAG: /* TestChangeOfGameState */3,
+        _0: 1
+      });
+    })
+  }, "ChangeGameState"), React.createElement(RegionVideo.make, {
+    state: state
+  }), React.createElement(RegionTableSeating.make, {
+    state: state
+  }));
 }
 
 var make = App;

@@ -1,12 +1,12 @@
 // use padding (default) zero
-let getStyle = (isLandscape, vhTrue) => {
-  isLandscape
+let getStyle = (state: Global.state) => {
+  state.localDevice.isLandscape
     ? ReactDOM.Style.make(
         ~position="fixed",
-        // ~top=Ute.getPercentVhTrueAsString(22.0, vhTrue), //"22vh",
-        // ~left=Ute.getPercentVhTrueAsString(25.0, vhTrue), //"25vh",
-        // ~width=Ute.getPercentVhTrueAsString(48.0, vhTrue), //"48vh",
-        // ~height=Ute.getPercentVhTrueAsString(34.0, vhTrue), //"34vh",
+        ~top=Ute.getPercentageInnerHeightAsPxString(22.0, state.localDevice.innerHeight), //"22vh",
+        ~left=Ute.getPercentageInnerHeightAsPxString(25.0, state.localDevice.innerHeight), //"25vh",
+        ~width=Ute.getPercentageInnerHeightAsPxString(48.0, state.localDevice.innerHeight), //"48vh",
+        ~height=Ute.getPercentageInnerHeightAsPxString(34.0, state.localDevice.innerHeight), //"34vh",
         ~zIndex="1",
         ~backgroundColor="#fff0d0",
         ~borderRadius="5px",
@@ -28,7 +28,7 @@ let getStyle = (isLandscape, vhTrue) => {
 }
 
 @react.component
-let make = (~isLandscape, ~vhTrue) => {
-  let style = getStyle(isLandscape, vhTrue)
+let make = (~state) => {
+  let style = getStyle(state)
   <div style> {React.string("Hello Bidding History")} </div>
 }

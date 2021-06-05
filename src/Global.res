@@ -15,6 +15,8 @@ let updateUIStateOnLoadOrResize = () => {
     " isLandscape: " ++
     Js.String2.make(isLandscapeRef.contents),
   )
+  // fix iOS Safari and Chrome feature/bug which reports vh incorrectly
+  // by dispatching the true window.innerHeight value as part of a resizecomponents action
   let _dummy = %raw(`
     document.getElementById("resizecomponents").click()
   `)
@@ -51,9 +53,12 @@ type action =
   | ResizeComponents(int, bool)
   | AddRemoteParticipantSid(string)
   | RemoveRemoteParticipantSid(string)
+  | TestChangeOfGameState(int)
 
 let initialLocalDevice = {
-  // when window load event fires, innerheight is updated
+  // when window load event fires, innerheight and isLandscape are updated
+  // we init the video array to just the local participant
+  // remote participants will be added and removed as they connect to and disconnect from the room
   innerHeight: 0,
   isLandscape: true,
   videoContainerIds: ["local-participant"],
@@ -97,6 +102,14 @@ let reducer = (state, action) => {
       {
         ...state,
         localDevice: localDevice,
+      }
+    }
+  | TestChangeOfGameState(n) => {
+      let count = state.game.count + n
+      let game = {count: count}
+      {
+        ...state,
+        game: game,
       }
     }
   }

@@ -27,91 +27,86 @@ const form = document.getElementById('form');
 function setupLocalDataTrack() {
   const dataTrack = new LocalDataTrack();
 
-  let mouseDown;
-  let mouseCoordinates;
-  //let touchCoordinates;
+  // let mouseDown;
+  // let mouseCoordinates;
 
-  window.addEventListener('mousedown', () => {
-    mouseDown = true;
-  }, false);
+  // window.addEventListener('mousedown', () => {
+  //   mouseDown = true;
+  // }, false);
 
-  window.addEventListener('mouseup', () => {
-    mouseDown = false;
-  }, false);
+  // window.addEventListener('mouseup', () => {
+  //   mouseDown = false;
+  // }, false);
 
-  window.addEventListener('mousemove', event => {
-    const { pageX: x, pageY: y } = event;
-    mouseCoordinates = { x, y };
+  // window.addEventListener('mousemove', event => {
+  //   const { pageX: x, pageY: y } = event;
+  //   mouseCoordinates = { x, y };
 
-    if (mouseDown) {
-      const color = colorHash.hex(dataTrack.id);
-      drawCircle(canvas, color, x, y);
+  //   if (mouseDown) {
+  //     const color = colorHash.hex(dataTrack.id);
+  //     drawCircle(canvas, color, x, y);
 
-      dataTrack.send(JSON.stringify({
-        mouseDown,
-        mouseCoordinates
-      }));
+  //     dataTrack.send(JSON.stringify({
+  //       mouseDown,
+  //       mouseCoordinates
+  //     }));
 
-      console.log('Send JSON:');
-      console.log(JSON.stringify({
-        mouseDown,
-        mouseCoordinates
-      }));
-    }
-  }, false);
+  //     console.log('Send JSON:');
+  //     console.log(JSON.stringify({
+  //       mouseDown,
+  //       mouseCoordinates
+  //     }));
+  //   }
+  // }, false);
 
-  // use lexical scope, not function scope
-  //function touchstartHandler(e) {
-  let touchstartHandler = (e) => {
-    const mouseDown = true;
-    let mouseCoordinates = {};
-    document.title = 'touchstart';
-    //dataTrack.send('Touch Start msg');
-    //dataTrack.send('{ "mouseDown": true, "mouseCoordinates": { "x": 200, "y": 200 } }');
-    mouseCoordinates.x = e.targetTouches[0].pageX;
-    mouseCoordinates.y = 200;
+  // // use lexical scope, not function scope
+  // let touchstartHandler = (e) => {
+  //   const mouseDown = true;
+  //   let mouseCoordinates = {};
+  //   document.title = 'touchstart';
+  //   mouseCoordinates.x = e.targetTouches[0].pageX;
+  //   mouseCoordinates.y = 200;
 
-    dataTrack.send(JSON.stringify({
-      mouseDown,
-      mouseCoordinates
-    }));
+  //   dataTrack.send(JSON.stringify({
+  //     mouseDown,
+  //     mouseCoordinates
+  //   }));
 
-  }
+  // }
 
-  function touchendHandler(e) {
-    document.title = 'touchend';
-  }
+  // function touchendHandler(e) {
+  //   document.title = 'touchend';
+  // }
 
-  function touchmoveHandler(e) {
-    const mouseDown = true;
-    let x = 0;
-    let mouseCoordinates = {};
-    //document.title = Date.now();
-    //document.title = e.targetTouches[0].pageX;
-    document.title = e.targetTouches[0].pageX;
-    // const { pageX: x, pageY: y } = e.targetTouches[0];
-    // touchCoordinates = { x, y };
-    const color = colorHash.hex(dataTrack.id);
-    drawCircle(canvas, color, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+  // function touchmoveHandler(e) {
+  //   const mouseDown = true;
+  //   let x = 0;
+  //   let mouseCoordinates = {};
+  //   document.title = e.targetTouches[0].pageX;
+  //   const color = colorHash.hex(dataTrack.id);
+  //   drawCircle(canvas, color, e.targetTouches[0].pageX, e.targetTouches[0].pageY);
 
-    mouseCoordinates.x = e.targetTouches[0].pageX;
-    mouseCoordinates.y = e.targetTouches[0].pageY;
+  //   mouseCoordinates.x = e.targetTouches[0].pageX;
+  //   mouseCoordinates.y = e.targetTouches[0].pageY;
 
-    //dataTrack.send('{ "mouseDown": true, "mouseCoordinates": { "x": x, "y": 300 } }');
-    dataTrack.send(JSON.stringify({
-      mouseDown,
-      mouseCoordinates
-    }));
+  //   dataTrack.send(JSON.stringify({
+  //     mouseDown,
+  //     mouseCoordinates
+  //   }));
 
-    //e.preventDefault();
+  //   //e.preventDefault();
 
-  }
+  // }
 
 
-  // added JB 
-  window.addEventListener('touchstart', touchstartHandler, false);
-  window.addEventListener('touchend', touchendHandler, false);
-  window.addEventListener('touchmove', touchmoveHandler, false);
+  // // added JB 
+  // window.addEventListener('touchstart', touchstartHandler, false);
+  // window.addEventListener('touchend', touchendHandler, false);
+  // window.addEventListener('touchmove', touchmoveHandler, false);
+
+  // setup a global reference to this datatrack, so we can call
+  // the .send method
+  window.localDataTrack = dataTrack;
 
   return dataTrack;
 }

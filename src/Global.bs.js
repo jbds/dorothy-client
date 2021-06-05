@@ -99,6 +99,15 @@ function reducer(state, action) {
                 localDevice: localDevice$2,
                 game: state.game
               };
+    case /* TestChangeOfGameState */3 :
+        var count = state.game.count + action._0 | 0;
+        var game = {
+          count: count
+        };
+        return {
+                localDevice: state.localDevice,
+                game: game
+              };
     
   }
 }

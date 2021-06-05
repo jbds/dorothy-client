@@ -1,0 +1,7 @@
+  console.log("snuck in");
+  if (window.localDataTrack == undefined) {
+    console.log('skip on lDT undefined')
+  } else {
+    window.localDataTrack.send("ABC");
+  }
+  console.log("snuck out");
