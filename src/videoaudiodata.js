@@ -307,14 +307,14 @@ function trackSubscribed(participant, track) {
   } else if (track.kind === 'data') {
     // temp disable to avoid colorhash type error JB 21/05/21
     // const color = colorHash.hex(track.id);
-    // track.on('message', data => {
-    //   console.log('Data recd:');
-    //   console.log(data);
-    //   const { mouseDown, mouseCoordinates: { x, y } } = JSON.parse(data);
-    //   if (mouseDown) {
-    //     drawCircle(canvas, color, x, y);
-    //   }
-    // });
+    track.on('message', data => {
+      console.log('Data recd:');
+      console.log(data);
+      //   const { mouseDown, mouseCoordinates: { x, y } } = JSON.parse(data);
+      //   if (mouseDown) {
+      //     drawCircle(canvas, color, x, y);
+      //   }
+    });
   }
 }
 
