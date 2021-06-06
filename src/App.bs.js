@@ -4,6 +4,7 @@
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var Global = require("./Global.bs.js");
+var Caml_obj = require("rescript/lib/js/caml_obj.js");
 var RegionVideo = require("./RegionsStyling/RegionVideo.bs.js");
 var RegionTableSeating = require("./RegionsStyling/RegionTableSeating.bs.js");
 
@@ -12,14 +13,14 @@ function App(Props) {
   var dispatch = match[1];
   var state = match[0];
   window.gameState = state.game;
-  console.log("statechange:", state.game);
-  console.log("snuck in");
+  console.log("new game state: ", state.game);
+  //console.log("snuck in");
   if (window.localDataTrack == undefined) {
     console.log('skip on lDT undefined')
   } else {
-    window.localDataTrack.send("ABC");
+    window.localDataTrack.send(JSON.stringify(state.game));
   }
-  console.log("snuck out");
+  //console.log("snuck out");
   return React.createElement(React.Fragment, undefined, React.createElement("button", {
     id: "resizecomponents",
     style: {
@@ -65,7 +66,23 @@ function App(Props) {
         _0: 1
       });
     })
-  }, "ChangeGameState"), React.createElement(RegionVideo.make, {
+  }, "ChangeGameState"), React.createElement("button", {
+    id: "replacegamestatefromremote",
+    style: {
+      display: "show"
+    },
+    onClick: (function (param) {
+      if (Caml_obj.caml_equal(window.receivedGameState, state.game)) {
+        console.log("recd state = local state - action aborted");
+        return;
+      } else {
+        return Curry._1(dispatch, {
+          TAG: /* ReplaceGameStateFromRemote */4,
+          _0: window.receivedGameState
+        });
+      }
+    })
+  }, "ReplaceGameStateFromRemote"), React.createElement(RegionVideo.make, {
     state: state
   }), React.createElement(RegionTableSeating.make, {
     state: state

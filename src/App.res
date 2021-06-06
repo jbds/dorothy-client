@@ -13,7 +13,7 @@ let make = () => {
   // browser console window and consume from js
   w["gameState"] = state.game
   // write explicitly to console on every state change (local device too), not just game
-  Js.log2("statechange:", state.game)
+  Js.log2("new game state: ", state.game)
   // send game state from the local twilio datatrack if it exists
   <>
     //{React.string("state.innerHeight:" ++ Belt.Int.toString(state.innerHeight))}
@@ -46,6 +46,18 @@ let make = () => {
       onClick={_ => dispatch(TestChangeOfGameState(1))}
       style={ReactDOMStyle.make(~display="show", ())}>
       {React.string("ChangeGameState")}
+    </button>
+    // replace game state with received state from remote participant
+    // but only if state has changed to avoid infinite stream of messages
+    <button
+      id="replacegamestatefromremote"
+      onClick={_ => {
+        w["receivedGameState"] == state.game
+          ? Js.log("recd state = local state - action aborted")
+          : dispatch(ReplaceGameStateFromRemote(w["receivedGameState"]))
+      }}
+      style={ReactDOMStyle.make(~display="show", ())}>
+      {React.string("ReplaceGameStateFromRemote")}
     </button>
     //<RegionCardTable state />
     //<RegionCardTableTLHS state />

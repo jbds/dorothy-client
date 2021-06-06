@@ -1,7 +1,8 @@
-  console.log("snuck in");
+  //console.log("snuck in");
   if (window.localDataTrack == undefined) {
     console.log('skip on lDT undefined')
   } else {
-    window.localDataTrack.send("ABC");
+    window.localDataTrack.send(JSON.stringify(state.game));
   }
-  console.log("snuck out");
+  //console.log("snuck out");
+

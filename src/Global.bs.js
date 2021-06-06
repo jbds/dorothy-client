@@ -50,6 +50,7 @@ var initialState = {
 function reducer(state, action) {
   switch (action.TAG | 0) {
     case /* ResizeComponents */0 :
+        console.log("ACTION: ResizeComponents");
         var init = state.localDevice;
         var localDevice_innerHeight = action._0;
         var localDevice_isLandscape = action._1;
@@ -64,6 +65,7 @@ function reducer(state, action) {
                 game: state.game
               };
     case /* AddRemoteParticipantSid */1 :
+        console.log("ACTION: AddRemoteParticipantSid");
         var videoContainerIds = state.localDevice.videoContainerIds.concat([action._0]);
         var init$1 = state.localDevice;
         var localDevice_innerHeight$1 = init$1.innerHeight;
@@ -79,11 +81,11 @@ function reducer(state, action) {
               };
     case /* RemoveRemoteParticipantSid */2 :
         var id = action._0;
+        console.log("ACTION: RemoveRemoteParticipantSid");
         var copyOfVideoContainerIds = state.localDevice.videoContainerIds.slice();
         var index = copyOfVideoContainerIds.findIndex(function (x) {
               return x === id;
             });
-        console.log("index:" + String(index));
         if (index !== -1) {
           copyOfVideoContainerIds.splice(index, 1);
         }
@@ -100,6 +102,7 @@ function reducer(state, action) {
                 game: state.game
               };
     case /* TestChangeOfGameState */3 :
+        console.log("ACTION: TestChangeOfGameState");
         var count = state.game.count + action._0 | 0;
         var game = {
           count: count
@@ -107,6 +110,12 @@ function reducer(state, action) {
         return {
                 localDevice: state.localDevice,
                 game: game
+              };
+    case /* ReplaceGameStateFromRemote */4 :
+        console.log("ACTION: ReplaceGameStateFromRemote");
+        return {
+                localDevice: state.localDevice,
+                game: action._0
               };
     
   }

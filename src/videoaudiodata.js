@@ -305,15 +305,16 @@ function trackSubscribed(participant, track) {
   if (track.kind === 'audio' || track.kind === 'video') {
     track.attach(`#${participant.sid} > video`);
   } else if (track.kind === 'data') {
-    // temp disable to avoid colorhash type error JB 21/05/21
-    // const color = colorHash.hex(track.id);
     track.on('message', data => {
-      console.log('Data recd:');
-      console.log(data);
-      //   const { mouseDown, mouseCoordinates: { x, y } } = JSON.parse(data);
-      //   if (mouseDown) {
-      //     drawCircle(canvas, color, x, y);
-      //   }
+      // beware infinite stream of identical state so called updates
+      //console.log(`message received from participant ${participant.identity}`);
+      const receivedGameState = JSON.parse(data);
+      console.log('receivedGameState');
+      console.log(receivedGameState);
+      // make state visible to Rescript via window object
+      window.receivedGameState = receivedGameState;
+      // trigger an action to check for change of state and only update if changed!
+      document.getElementById("replacegamestatefromremote").click()
     });
   }
 }

@@ -54,6 +54,7 @@ type action =
   | AddRemoteParticipantSid(string)
   | RemoveRemoteParticipantSid(string)
   | TestChangeOfGameState(int)
+  | ReplaceGameStateFromRemote(game)
 
 let initialLocalDevice = {
   // when window load event fires, innerheight and isLandscape are updated
@@ -76,6 +77,7 @@ let initialState = {
 let reducer = (state, action) => {
   switch action {
   | ResizeComponents(n, bln) => {
+      Js.log("ACTION: ResizeComponents")
       let localDevice = {...state.localDevice, innerHeight: n, isLandscape: bln}
       {
         ...state,
@@ -83,6 +85,7 @@ let reducer = (state, action) => {
       }
     }
   | AddRemoteParticipantSid(id) => {
+      Js.log("ACTION: AddRemoteParticipantSid")
       let videoContainerIds = Js.Array.concat([id], state.localDevice.videoContainerIds)
       let localDevice = {...state.localDevice, videoContainerIds: videoContainerIds}
       {
@@ -91,9 +94,9 @@ let reducer = (state, action) => {
       }
     }
   | RemoveRemoteParticipantSid(id) => {
+      Js.log("ACTION: RemoveRemoteParticipantSid")
       let copyOfVideoContainerIds = Js.Array.copy(state.localDevice.videoContainerIds)
       let index = Js.Array.findIndex(x => x == id, copyOfVideoContainerIds)
-      Js.log("index:" ++ Belt.Int.toString(index))
       let _dummy =
         index == -1
           ? []
@@ -105,8 +108,16 @@ let reducer = (state, action) => {
       }
     }
   | TestChangeOfGameState(n) => {
+      Js.log("ACTION: TestChangeOfGameState")
       let count = state.game.count + n
       let game = {count: count}
+      {
+        ...state,
+        game: game,
+      }
+    }
+  | ReplaceGameStateFromRemote(game) => {
+      Js.log("ACTION: ReplaceGameStateFromRemote")
       {
         ...state,
         game: game,
