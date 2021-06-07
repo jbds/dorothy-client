@@ -4,10 +4,16 @@
 var App = require("./App.bs.js");
 var React = require("react");
 var ReactDom = require("react-dom");
+var P5startJs = require("./p5start.js");
 var VideoaudiodataJs = require("./videoaudiodata.js");
 
 function main(prim) {
   return VideoaudiodataJs.main();
+}
+
+function p5CreateInstance(prim) {
+  P5startJs.p5CreateInstance();
+  
 }
 
 document.title = "Dorothy v0.24";
@@ -28,7 +34,10 @@ function delayedaction(param) {
 
 var dummyId = setTimeout(delayedaction, 2000);
 
+P5startJs.p5CreateInstance();
+
 exports.main = main;
+exports.p5CreateInstance = p5CreateInstance;
 exports.delayedaction = delayedaction;
 exports.dummyId = dummyId;
 /*  Not a pure module */
