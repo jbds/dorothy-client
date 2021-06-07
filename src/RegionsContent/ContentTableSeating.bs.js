@@ -163,7 +163,7 @@ function ContentTableSeating(Props) {
                   },
                   onClick: (function (param) {
                       if (Caml_obj.caml_equal(window.receivedGameState, state.game)) {
-                        console.log("recd state = local state - action aborted");
+                        console.log("recd state = local state, so action aborted");
                         return ;
                       } else {
                         return Curry._1(dispatch, {

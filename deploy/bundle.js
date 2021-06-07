@@ -68727,8 +68727,12 @@ var RegionTableSeating = require("./RegionsStyling/RegionTableSeating.bs.js");
 function App(Props) {
   var match = React.useReducer(Global.reducer, Global.initialState);
   var state = match[0];
-  window.gameState = state.game;
-  console.log("new game state: ", state.game);
+  ((window.localDataTrack == undefined 
+      ?
+      console.log('skip on lDT undefined')
+      :
+      window.localDataTrack.send(JSON.stringify(state.game))));
+  console.log("new state: ", state);
   return React.createElement(React.Fragment, undefined, React.createElement(RegionVideo.make, {
                   state: state
                 }), React.createElement(RegionTableSeating.make, {
@@ -68894,7 +68898,7 @@ function p5CreateInstance(prim) {
   
 }
 
-document.title = "Dorothy v0.26";
+document.title = "Dorothy v0.30";
 
 var root = document.querySelector("#root");
 
@@ -69135,7 +69139,7 @@ function ContentTableSeating(Props) {
                   },
                   onClick: (function (param) {
                       if (Caml_obj.caml_equal(window.receivedGameState, state.game)) {
-                        console.log("recd state = local state - action aborted");
+                        console.log("recd state = local state, so action aborted");
                         return ;
                       } else {
                         return Curry._1(dispatch, {
@@ -69208,11 +69212,11 @@ function RegionTableSeating(Props) {
     top: "0"
   };
   return React.createElement("div", {
-              style: style
-            }, React.createElement(ContentTableSeating.make, {
-                  dispatch: dispatch,
-                  state: state
-                }));
+    style: style
+  }, React.createElement(ContentTableSeating.make, {
+    dispatch: dispatch,
+    state: state
+  }));
 }
 
 var make = RegionTableSeating;

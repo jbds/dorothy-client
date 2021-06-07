@@ -16,7 +16,7 @@ function p5CreateInstance(prim) {
   
 }
 
-document.title = "Dorothy v0.27";
+document.title = "Dorothy v0.30";
 
 var root = document.querySelector("#root");
 

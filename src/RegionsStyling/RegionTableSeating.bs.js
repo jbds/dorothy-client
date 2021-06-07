@@ -20,11 +20,11 @@ function RegionTableSeating(Props) {
     top: "0"
   };
   return React.createElement("div", {
-              style: style
-            }, React.createElement(ContentTableSeating.make, {
-                  dispatch: dispatch,
-                  state: state
-                }));
+    style: style
+  }, React.createElement(ContentTableSeating.make, {
+    dispatch: dispatch,
+    state: state
+  }));
 }
 
 var make = RegionTableSeating;

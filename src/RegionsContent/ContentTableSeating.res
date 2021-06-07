@@ -559,7 +559,7 @@ let make = (~dispatch: Global.action => unit, ~state: Global.state) => {
       id="replacegamestatefromremote"
       onClick={_ => {
         w["receivedGameState"] == state.game
-          ? Js.log("recd state = local state - action aborted")
+          ? Js.log("recd state = local state, so action aborted")
           : dispatch(ReplaceGameStateFromRemote(w["receivedGameState"]))
       }}
       style={ReactDOMStyle.make(~display="show", ())}>

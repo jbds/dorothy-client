@@ -9,8 +9,12 @@ var RegionTableSeating = require("./RegionsStyling/RegionTableSeating.bs.js");
 function App(Props) {
   var match = React.useReducer(Global.reducer, Global.initialState);
   var state = match[0];
-  window.gameState = state.game;
-  console.log("new game state: ", state.game);
+  ((window.localDataTrack == undefined 
+      ?
+      console.log('skip on lDT undefined')
+      :
+      window.localDataTrack.send(JSON.stringify(state.game))));
+  console.log("new state: ", state);
   return React.createElement(React.Fragment, undefined, React.createElement(RegionVideo.make, {
                   state: state
                 }), React.createElement(RegionTableSeating.make, {

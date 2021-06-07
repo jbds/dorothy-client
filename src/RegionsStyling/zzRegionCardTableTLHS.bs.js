@@ -30,7 +30,7 @@ function getStyle(state) {
   }
 }
 
-function RegionCardTableTLHS(Props) {
+function ZzRegionCardTableTLHS(Props) {
   var state = Props.state;
   var style = getStyle(state);
   return React.createElement("div", {
@@ -38,7 +38,7 @@ function RegionCardTableTLHS(Props) {
             }, null);
 }
 
-var make = RegionCardTableTLHS;
+var make = ZzRegionCardTableTLHS;
 
 exports.getStyle = getStyle;
 exports.make = make;
