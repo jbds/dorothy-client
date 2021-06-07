@@ -1,5 +1,8 @@
+// need reference to window so we can pass refs to js dom elements
+@val external w: 'a = "window"
+
 @react.component
-let make = (~state: Global.state) => {
+let make = (~dispatch: Global.action => unit, ~state: Global.state) => {
   <>
     <InputStd id="identity" />
     <InputStd id="name" />
@@ -521,5 +524,46 @@ let make = (~state: Global.state) => {
         // </tr>
       </tbody>
     </table>
+    // addremoteparticipantsid .click() is called from videoaudiodata.js
+    <button
+      id="addremoteparticipantsid"
+      onClick={_ => dispatch(AddRemoteParticipantSid(w["remoteparticipantid"]))}
+      style={ReactDOMStyle.make(~display="show", ())}>
+      {React.string("Add")}
+    </button>
+    // resizecomponents .click() is called from Global.res
+    <button
+      id="resizecomponents"
+      onClick={_ =>
+        dispatch(ResizeComponents(Global.innerHeightRef.contents, Global.isLandscapeRef.contents))}
+      style={ReactDOMStyle.make(~display="none", ())}>
+      {React.string("Res")}
+    </button>
+    // removeremoteparticipantsid .click() is called from videoaudiodata.js
+    <button
+      id="removeremoteparticipantsid"
+      onClick={_ => dispatch(RemoveRemoteParticipantSid(w["remoteparticipantid"]))}
+      style={ReactDOMStyle.make(~display="show", ())}>
+      {React.string("Rem")}
+    </button>
+    // test a change of the game state
+    <button
+      id="testchangeofgamestate"
+      onClick={_ => dispatch(TestChangeOfGameState(1))}
+      style={ReactDOMStyle.make(~display="show", ())}>
+      {React.string("ChangeGameState")}
+    </button>
+    // replace game state with received state from remote participant
+    // but only if state has changed to avoid infinite stream of messages
+    <button
+      id="replacegamestatefromremote"
+      onClick={_ => {
+        w["receivedGameState"] == state.game
+          ? Js.log("recd state = local state - action aborted")
+          : dispatch(ReplaceGameStateFromRemote(w["receivedGameState"]))
+      }}
+      style={ReactDOMStyle.make(~display="show", ())}>
+      {React.string("ReplaceGameStateFromRemote")}
+    </button>
   </>
 }

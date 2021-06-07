@@ -6,6 +6,7 @@ var React = require("react");
 var ContentTableSeating = require("../RegionsContent/ContentTableSeating.bs.js");
 
 function RegionTableSeating(Props) {
+  var dispatch = Props.dispatch;
   var state = Props.state;
   var style = {
     background: "#f8f8f8",
@@ -21,6 +22,7 @@ function RegionTableSeating(Props) {
   return React.createElement("div", {
               style: style
             }, React.createElement(ContentTableSeating.make, {
+                  dispatch: dispatch,
                   state: state
                 }));
 }

@@ -3,7 +3,7 @@
 
 // must declare type of state
 @react.component
-let make = (~state: Global.state) => {
+let make = (~dispatch: Global.action => unit, ~state: Global.state) => {
   let style = ReactDOM.Style.make(
     ~position="fixed",
     ~top="0",
@@ -19,5 +19,5 @@ let make = (~state: Global.state) => {
     (),
   )
 
-  <div style> <ContentTableSeating state /> </div>
+  <div style> <ContentTableSeating dispatch state /> </div>
 }

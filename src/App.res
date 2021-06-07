@@ -18,53 +18,13 @@ let make = () => {
   <>
     //{React.string("state.innerHeight:" ++ Belt.Int.toString(state.innerHeight))}
     //{React.string("state.isLandscape:" ++ Js.String2.make(state.isLandscape))}
-    // resizecomponents .click() is called from Global.res
-    <button
-      id="resizecomponents"
-      onClick={_ =>
-        dispatch(ResizeComponents(Global.innerHeightRef.contents, Global.isLandscapeRef.contents))}
-      style={ReactDOMStyle.make(~display="none", ())}>
-      {React.string("Res")}
-    </button>
-    // addremoteparticipantsid .click() is called from videoaudiodata.js
-    <button
-      id="addremoteparticipantsid"
-      onClick={_ => dispatch(AddRemoteParticipantSid(w["remoteparticipantid"]))}
-      style={ReactDOMStyle.make(~display="show", ())}>
-      {React.string("Add")}
-    </button>
-    // removeremoteparticipantsid .click() is called from videoaudiodata.js
-    <button
-      id="removeremoteparticipantsid"
-      onClick={_ => dispatch(RemoveRemoteParticipantSid(w["remoteparticipantid"]))}
-      style={ReactDOMStyle.make(~display="show", ())}>
-      {React.string("Rem")}
-    </button>
-    // test a change of the game state
-    <button
-      id="testchangeofgamestate"
-      onClick={_ => dispatch(TestChangeOfGameState(1))}
-      style={ReactDOMStyle.make(~display="show", ())}>
-      {React.string("ChangeGameState")}
-    </button>
-    // replace game state with received state from remote participant
-    // but only if state has changed to avoid infinite stream of messages
-    <button
-      id="replacegamestatefromremote"
-      onClick={_ => {
-        w["receivedGameState"] == state.game
-          ? Js.log("recd state = local state - action aborted")
-          : dispatch(ReplaceGameStateFromRemote(w["receivedGameState"]))
-      }}
-      style={ReactDOMStyle.make(~display="show", ())}>
-      {React.string("ReplaceGameStateFromRemote")}
-    </button>
+    // RegionCardTable is not required, because this is drawn by p5
     //<RegionCardTable state />
     //<RegionCardTableTLHS state />
     //<RegionCardTableBRHS state />
     <RegionVideo state />
-    <RegionTableSeating state />
-    // <RegionScoreSheet isLandscape vhTrue />
+    <RegionTableSeating dispatch state />
+    //<RegionScoreSheet state />
     // <RegionBiddingHistory isLandscape vhTrue />
     // <RegionBiddingKeyboard isLandscape vhTrue />
   </>
