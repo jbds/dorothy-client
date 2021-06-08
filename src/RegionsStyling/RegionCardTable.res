@@ -10,8 +10,9 @@ let getStyle = (state: Global.state) => {
         ~left="0",
         ~width=Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight),
         ~height=Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight),
-        ~backgroundColor="#003500",
-        ~backgroundImage="url(./assets/green_baize.jpg)",
+        ~backgroundColor="#F0FFF0",
+        //~backgroundColor="#003500",
+        //~backgroundImage="url(./assets/green_baize.jpg)",
         ~backgroundSize="cover",
         (),
       )
@@ -21,8 +22,9 @@ let getStyle = (state: Global.state) => {
         ~left="0",
         ~width="100vw",
         ~height="100vw",
-        ~backgroundColor="#003500",
-        ~backgroundImage="url(./assets/green_baize.jpg)",
+        ~backgroundColor="#F0FFF0",
+        //~backgroundColor="#003500",
+        //~backgroundImage="url(./assets/green_baize.jpg)",
         ~backgroundSize="cover",
         (),
       )
@@ -31,5 +33,5 @@ let getStyle = (state: Global.state) => {
 @react.component
 let make = (~state) => {
   let style = getStyle(state)
-  <div style> {React.null} </div>
+  <div id="regioncardtable" style> {React.null} </div>
 }

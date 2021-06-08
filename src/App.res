@@ -21,10 +21,11 @@ let make = () => {
   // write explicitly to console on every state change (local device too), not just game
   Js.log2("new state: ", state)
   <>
-    // RegionCardTable is not required, because this is drawn by p5
+    // RegionCardTable is the parent element of p5 controlled canvas
+    <RegionCardTable state />
     <RegionVideo state />
     <RegionTableSeating dispatch state />
-    //<RegionScoreSheet state />
+    <RegionScoreSheet state />
     // <RegionBiddingHistory isLandscape vhTrue />
     // <RegionBiddingKeyboard isLandscape vhTrue />
   </>

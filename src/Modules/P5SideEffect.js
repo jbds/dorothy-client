@@ -6,7 +6,8 @@ let drawLabels = (p, g, w) => {
   //   //console.log('No labels defined, abort drawLabels');
   //   return;
   // }
-  let textHeightToCanvasHeightRatio = w.innerHeight / 30;
+  // use canvas dimension
+  let textHeightToCanvasHeightRatio = g.canvasSize / 30;
   //let cardSegmentHeight = w.innerHeight * w.cardHeightToCanvasHeightRatio * w.cardSegmentHeightToCardRatio;
   p.textSize(textHeightToCanvasHeightRatio);
   p.textFont('Trebuchet MS');
@@ -14,7 +15,8 @@ let drawLabels = (p, g, w) => {
   // white, 50% transparent
   p.fill(255, 128);
   // move the origin to table centre
-  p.translate(w.innerHeight / 2, w.innerHeight / 2);
+  // NB use canvas dimension here, not window dimension
+  p.translate(g.canvasSize / 2, g.canvasSize / 2);
   // p.text(
   //   string,
   //   x coord of upper left corner,

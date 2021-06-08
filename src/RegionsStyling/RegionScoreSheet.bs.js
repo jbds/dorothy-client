@@ -19,6 +19,7 @@ function RegionScoreSheet(Props) {
     top: state.localDevice.isLandscape ? "50%" : "0"
   };
   return React.createElement("div", {
+              id: "regionscoresheet",
               style: style
             }, React.createElement(ContentScoreSheet.make, {
                   state: state

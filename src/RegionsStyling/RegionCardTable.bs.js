@@ -7,8 +7,7 @@ var React = require("react");
 function getStyle(state) {
   if (state.localDevice.isLandscape) {
     return {
-            backgroundColor: "#003500",
-            backgroundImage: "url(./assets/green_baize.jpg)",
+            backgroundColor: "#F0FFF0",
             height: Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight),
             left: "0",
             position: "fixed",
@@ -18,8 +17,7 @@ function getStyle(state) {
           };
   } else {
     return {
-            backgroundColor: "#003500",
-            backgroundImage: "url(./assets/green_baize.jpg)",
+            backgroundColor: "#F0FFF0",
             bottom: "0",
             height: "100vw",
             left: "0",
@@ -30,15 +28,16 @@ function getStyle(state) {
   }
 }
 
-function ZzRegionCardTable(Props) {
+function RegionCardTable(Props) {
   var state = Props.state;
   var style = getStyle(state);
   return React.createElement("div", {
+              id: "regioncardtable",
               style: style
             }, null);
 }
 
-var make = ZzRegionCardTable;
+var make = RegionCardTable;
 
 exports.getStyle = getStyle;
 exports.make = make;

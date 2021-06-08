@@ -4,6 +4,8 @@
 var React = require("react");
 var Global = require("./Global.bs.js");
 var RegionVideo = require("./RegionsStyling/RegionVideo.bs.js");
+var RegionCardTable = require("./RegionsStyling/RegionCardTable.bs.js");
+var RegionScoreSheet = require("./RegionsStyling/RegionScoreSheet.bs.js");
 var RegionTableSeating = require("./RegionsStyling/RegionTableSeating.bs.js");
 
 function App(Props) {
@@ -15,10 +17,14 @@ function App(Props) {
       :
       window.localDataTrack.send(JSON.stringify(state.game))));
   console.log("new state: ", state);
-  return React.createElement(React.Fragment, undefined, React.createElement(RegionVideo.make, {
+  return React.createElement(React.Fragment, undefined, React.createElement(RegionCardTable.make, {
+                  state: state
+                }), React.createElement(RegionVideo.make, {
                   state: state
                 }), React.createElement(RegionTableSeating.make, {
                   dispatch: match[1],
+                  state: state
+                }), React.createElement(RegionScoreSheet.make, {
                   state: state
                 }));
 }

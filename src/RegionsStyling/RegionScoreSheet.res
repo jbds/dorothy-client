@@ -14,5 +14,5 @@ let make = (~state: Global.state) => {
     ~overflowY="auto",
     (),
   )
-  <div style> <ContentScoreSheet state /> </div>
+  <div id="regionscoresheet" style> <ContentScoreSheet state /> </div>
 }

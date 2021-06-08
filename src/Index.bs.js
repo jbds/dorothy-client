@@ -16,7 +16,7 @@ function p5CreateInstance(prim) {
   
 }
 
-document.title = "Dorothy v0.30";
+document.title = "Dorothy v0.36";
 
 var root = document.querySelector("#root");
 
@@ -27,7 +27,7 @@ if (root == null) {
 }
 
 function delayedaction(param) {
-  console.log("after delay 2000ms");
+  console.log("call twilio api after delay to allow DOM elements creation");
   VideoaudiodataJs.main();
   
 }

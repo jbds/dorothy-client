@@ -72,16 +72,18 @@ const callbackFunctionForP5 = (p) => {
 
   p.setup = () => {
     // waits for preload to complete, then runs once
-    // TO DO allow for state.localDevice.isLandscape
-    g.canvasWidth = p.windowHeight;
-    g.canvasHeight = p.windowHeight;
-
-    //get a handle on the canvas so we can adjust z-index
-    g.cnv = p.createCanvas(g.canvasWidth, g.canvasHeight);
+    // get a handle on the canvas so we can adjust properties
+    // use arbitrarily small canvas size until we know orientation
+    g.cnv = p.createCanvas(50, 50);
     // z-index has no effect unless we set position to absolute too
     g.cnv.style('position: absolute');
     g.cnv.style('z-index: 1');
     g.cnv.id('mycanvas');
+    // attach canvas to appropriate element
+    g.cnv.parent('regioncardtable');
+    // canvas size calcs are orientaion specific
+    console.log('p5 setup initial canvas size');
+    resizeCanvas();
     //let p5btn1 = p.select('#btn1');
     //p5btn1.mousePressed(changeBgColor);
     // init userState
@@ -110,10 +112,25 @@ const callbackFunctionForP5 = (p) => {
   };
 
   p.windowResized = () => {
-    g.canvasWidth = p.windowHeight;
-    g.canvasHeight = p.windowHeight;
-    p.resizeCanvas(g.canvasWidth, g.canvasHeight);
     console.log('p5 windowResized event');
+    resizeCanvas();
+  }
+
+  const resizeCanvas = () => {
+    // use similar orientation check as in Global.res
+    const isLandscape = p.windowHeight < p.windowWidth
+    console.log('isLandscape:' + isLandscape);
+    if (isLandscape) {
+      g.canvasWidth = p.windowHeight;
+      g.canvasHeight = p.windowHeight;
+      g.canvasSize = p.windowHeight
+    } else {
+      g.canvasWidth = p.windowWidth;
+      g.canvasHeight = p.windowWidth;
+      g.canvasSize = p.windowWidth
+    }
+    // global g.canvasSize used in draw calcs
+    p.resizeCanvas(g.canvasWidth, g.canvasHeight);
   }
 
   p.mousePressed = () => {
