@@ -7,9 +7,9 @@ var React = require("react");
 function VideoStd(Props) {
   var state = Props.state;
   var style = {
-    height: Ute.getPercentageInnerHeightAsPxString(10.0, state.localDevice.innerHeight),
+    height: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(10.0, state.localDevice.innerHeight) : Ute.getPercentageInnerHeightAsPxString(10.0, window.innerWidth),
     overflow: "hidden",
-    width: Ute.getPercentageInnerHeightAsPxString(10.0, state.localDevice.innerHeight),
+    width: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(10.0, state.localDevice.innerHeight) : Ute.getPercentageInnerHeightAsPxString(10.0, window.innerWidth),
     borderRadius: "20%",
     objectFit: "cover"
   };

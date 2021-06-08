@@ -12,7 +12,7 @@ function RegionTableSeating(Props) {
     background: "#f8f8f8",
     bottom: state.localDevice.isLandscape ? "60%" : "100vw",
     color: "gray",
-    left: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight) : "54%",
+    left: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight) : "55%",
     overflowY: "auto",
     position: "fixed",
     right: "0",
@@ -20,11 +20,11 @@ function RegionTableSeating(Props) {
     top: "0"
   };
   return React.createElement("div", {
-    style: style
-  }, React.createElement(ContentTableSeating.make, {
-    dispatch: dispatch,
-    state: state
-  }));
+              style: style
+            }, React.createElement(ContentTableSeating.make, {
+                  dispatch: dispatch,
+                  state: state
+                }));
 }
 
 var make = RegionTableSeating;

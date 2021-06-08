@@ -6,12 +6,12 @@
 let make = (~dispatch: Global.action => unit, ~state: Global.state) => {
   let style = ReactDOM.Style.make(
     ~position="fixed",
-    ~top="0",
+    ~top=state.localDevice.isLandscape ? "0" : "0",
+    ~right=state.localDevice.isLandscape ? "0" : "0",
     ~bottom=state.localDevice.isLandscape ? "60%" : "100vw",
     ~left=state.localDevice.isLandscape
       ? Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight)
-      : "54%",
-    ~right=state.localDevice.isLandscape ? "0" : "0",
+      : "55%",
     ~background="#f8f8f8",
     ~color="gray",
     ~textAlign="center",

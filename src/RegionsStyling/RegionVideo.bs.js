@@ -11,10 +11,10 @@ function RegionVideo(Props) {
     background: "#e0e0f0",
     bottom: state.localDevice.isLandscape ? "50%" : "100vw",
     color: "gray",
-    left: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight) : "0",
+    left: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight) : "45%",
     overflowY: "auto",
     position: "fixed",
-    right: state.localDevice.isLandscape ? "0" : "46%",
+    right: state.localDevice.isLandscape ? "0" : "45%",
     textAlign: "center",
     top: state.localDevice.isLandscape ? "40%" : "0"
   };

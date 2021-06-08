@@ -11,7 +11,7 @@
 @val external setTimeout: (unit => unit, int) => float = "setTimeout"
 
 // change title in index.html too, so that we can avoid js cache when update needed, and check same
-doc["title"] = "Dorothy v0.36"
+doc["title"] = "Dorothy v0.38"
 
 switch ReactDOM.querySelector("#root") {
 | Some(root) => ReactDOM.render(<App />, root)

@@ -14,7 +14,7 @@ function RegionScoreSheet(Props) {
     left: state.localDevice.isLandscape ? Ute.getPercentageInnerHeightAsPxString(100.0, state.localDevice.innerHeight) : "0",
     overflowY: "auto",
     position: "fixed",
-    right: state.localDevice.isLandscape ? "0" : "46%",
+    right: state.localDevice.isLandscape ? "0" : "55%",
     textAlign: "center",
     top: state.localDevice.isLandscape ? "50%" : "0"
   };
